@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Shield } from 'lucide-react';
-import { Globe } from './ui/globe';
 import { BlurFade } from './ui/blur-fade';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Globe } from './ui/globe';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
@@ -18,6 +19,10 @@ const HeroSection = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const fallbackComponent = () => (
+    <div className="animate-pulse bg-gray-200 h-full w-full rounded-full" />
+  );
 
   return (
     <section id="home" className="pt-32 md:pt-40 pb-20 bg-white relative overflow-hidden h-screen">
@@ -60,7 +65,9 @@ const HeroSection = () => {
           </div>
 
           <div className="absolute right-0 md:right-[10%] top-0 md:-top-20 h-full w-[800px] md:w-[1000px] -mr-[400px] md:-mr-[300px]">
-            <Globe />
+            <ErrorBoundary FallbackComponent={fallbackComponent}>
+              <Globe />
+            </ErrorBoundary>
           </div>
         </div>
       </div>

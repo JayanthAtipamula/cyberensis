@@ -1,8 +1,7 @@
 "use client"
 
 import createGlobe, { COBEOptions } from "cobe"
-import { useCallback, useEffect, useRef, useState } from "react"
-
+import { useCallback, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 const GLOBE_CONFIG: COBEOptions = {
@@ -40,82 +39,96 @@ export function Globe({
   className?: string
   config?: COBEOptions
 }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const pointerInteracting = useRef<number | null>(null)
+  const pointerInteractionMovement = useRef(0)
+  const globeInstance = useRef<any>(null)
   let phi = 0
   let width = 0
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const pointerInteracting = useRef(null)
-  const pointerInteractionMovement = useRef(0)
-  const [r, setR] = useState(0)
 
-  const updatePointerInteraction = (value: any) => {
+  const updatePointerInteraction = useCallback((value: number | null) => {
     pointerInteracting.current = value
     if (canvasRef.current) {
       canvasRef.current.style.cursor = value ? "grabbing" : "grab"
     }
-  }
+  }, [])
 
-  const updateMovement = (clientX: any) => {
+  const updateMovement = useCallback((clientX: number) => {
     if (pointerInteracting.current !== null) {
       const delta = clientX - pointerInteracting.current
       pointerInteractionMovement.current = delta
-      setR(delta / 200)
     }
-  }
+  }, [])
 
-  const onRender = useCallback(
-    (state: Record<string, any>) => {
-      if (!pointerInteracting.current) phi += 0.005
-      state.phi = phi + r
-      state.width = width * 2
-      state.height = width * 2
-    },
-    [r],
-  )
-
-  const onResize = () => {
-    if (canvasRef.current) {
-      width = canvasRef.current.offsetWidth
+  const onRender = useCallback((state: any) => {
+    if (!pointerInteracting.current) {
+      phi += 0.005
     }
-  }
+    state.phi = phi + pointerInteractionMovement.current / 200
+    state.width = width * 2
+    state.height = width * 2
+  }, [])
 
   useEffect(() => {
+    if (!canvasRef.current) return
+
+    const onResize = () => {
+      if (canvasRef.current) {
+        width = canvasRef.current.offsetWidth
+      }
+    }
+    
     window.addEventListener("resize", onResize)
     onResize()
 
-    const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender,
-    })
+    try {
+      globeInstance.current = createGlobe(canvasRef.current, {
+        ...config,
+        width: width * 2,
+        height: width * 2,
+        onRender,
+      })
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"))
-    return () => globe.destroy()
-  }, [])
+      // Fade in the globe
+      setTimeout(() => {
+        if (canvasRef.current) {
+          canvasRef.current.style.opacity = "1"
+        }
+      }, 100)
+    } catch (error) {
+      console.error("Error creating globe:", error)
+    }
+
+    return () => {
+      window.removeEventListener("resize", onResize)
+      if (globeInstance.current && globeInstance.current.destroy) {
+        globeInstance.current.destroy()
+      }
+    }
+  }, [config, onRender])
 
   return (
-    <div
-      className={cn(
-        "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
-        className,
-      )}
-    >
+    <div className={cn("relative aspect-square w-full max-w-[600px] mx-auto", className)}>
       <canvas
-        className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]",
-        )}
         ref={canvasRef}
-        onPointerDown={(e) =>
-          updatePointerInteraction(
-            e.clientX - pointerInteractionMovement.current,
-          )
-        }
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
+        className="h-full w-full opacity-0 transition-opacity duration-500"
+        onPointerDown={(e) => {
+          updatePointerInteraction(e.clientX - pointerInteractionMovement.current)
+        }}
+        onPointerUp={() => {
+          updatePointerInteraction(null)
+        }}
+        onPointerOut={() => {
+          updatePointerInteraction(null)
+        }}
+        onMouseMove={(e) => {
+          updateMovement(e.clientX)
+        }}
+        onTouchMove={(e) => {
+          if (e.touches[0]) {
+            updateMovement(e.touches[0].clientX)
+          }
+        }}
       />
     </div>
   )

@@ -17,6 +17,8 @@
     "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-error-boundary": "^5.0.0",
+    "react-router-dom": "^7.2.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {

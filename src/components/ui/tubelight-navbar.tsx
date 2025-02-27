@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -16,7 +16,7 @@ interface NavBarProps {
   className?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
+export const NavBar = memo(({ items, className }: NavBarProps) => {
   const [activeTab, setActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -44,14 +44,17 @@ export function NavBar({ items, className }: NavBarProps) {
       >
         <div className="container mx-auto px-8 md:px-12 lg:px-16">
           <div className="flex items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center flex-shrink-0">
+            {/* Logo with Link */}
+            <a 
+              href="/" 
+              className="flex items-center flex-shrink-0 cursor-pointer transition-opacity hover:opacity-80"
+            >
               <img 
                 src="/assets/logo.png" 
                 alt="CyberShield Logo" 
                 className="h-12 w-auto md:h-14"
               />
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center justify-center flex-grow gap-3">
@@ -146,4 +149,4 @@ export function NavBar({ items, className }: NavBarProps) {
       </AnimatePresence>
     </>
   )
-}
+})
