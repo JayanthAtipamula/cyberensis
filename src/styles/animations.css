@@ -1,9 +1,9 @@
 @keyframes slide {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -11,8 +11,25 @@
   animation: slide 30s linear infinite;
   display: inline-flex;
   white-space: nowrap;
+  will-change: transform;
 }
 
-.logos-slide:hover {
+/* Faster animation class with mobile optimization */
+.logos-slide-fast {
+  animation: slide 15s linear infinite;
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Mobile-specific speed */
+@media (max-width: 768px) {
+  .logos-slide-fast {
+    animation: slide 8s linear infinite; /* Even faster on mobile */
+  }
+}
+
+.logos-slide:hover,
+.logos-slide-fast:hover {
   animation-play-state: paused;
 }

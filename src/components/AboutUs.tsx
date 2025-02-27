@@ -1,96 +1,122 @@
 import React from 'react';
-import { Shield, Lock, CheckCircle } from 'lucide-react';
-import { AnimatedSpan, Terminal, TypingAnimation } from "../registry/magicui/terminal";
-
-const TerminalDemo = () => {
-  return (
-    <Terminal>
-      <TypingAnimation>&gt; cybershield scan --target example.com</TypingAnimation>
-
-      <AnimatedSpan delay={1500} className="text-green-500">
-        <span>✔ Initializing security scan</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={2000} className="text-green-500">
-        <span>✔ Checking for open ports</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={2500} className="text-green-500">
-        <span>✔ Scanning for web vulnerabilities</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={3000} className="text-green-500">
-        <span>✔ Testing SSL/TLS configuration</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={3500} className="text-green-500">
-        <span>✔ Checking for outdated software</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={4000} className="text-green-500">
-        <span>✔ Analyzing security headers</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={4500} className="text-green-500">
-        <span>✔ Testing for common misconfigurations</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={5000} className="text-green-500">
-        <span>✔ Generating comprehensive report</span>
-      </AnimatedSpan>
-
-      <AnimatedSpan delay={5500} className="text-blue-500">
-        <span>ℹ Scan complete. Found 3 critical, 5 medium, and 8 low vulnerabilities</span>
-      </AnimatedSpan>
-
-      <TypingAnimation delay={6000} className="text-[#f28749]">
-        CyberShield protection recommendations ready.
-      </TypingAnimation>
-
-      <TypingAnimation delay={6500} className="text-muted-foreground">
-        Run 'cybershield remediate' to fix issues automatically.
-      </TypingAnimation>
-    </Terminal>
-  );
-};
+import { motion } from 'framer-motion';
+import { Award, Users, Sparkles, Target } from 'lucide-react';
 
 const AboutUs = () => {
+  const stats = [
+    {
+      icon: Award,
+      label: "Years Experience",
+      value: "9+",
+    },
+    {
+      icon: Users,
+      label: "Team Members",
+      value: "50+",
+    },
+    {
+      icon: Sparkles,
+      label: "Projects Completed",
+      value: "500+",
+    },
+    {
+      icon: Target,
+      label: "Success Rate",
+      value: "98%",
+    },
+  ];
+
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-            <h2 className="text-3xl font-bold mb-6">About CyberShield</h2>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              Founded in 2015, CyberShield has been at the forefront of cybersecurity innovation, 
-              helping businesses identify and mitigate security vulnerabilities before they can be exploited.
-            </p>
-            <p className="text-gray-700 mb-8 leading-relaxed">
-              Our team of certified security experts brings decades of combined experience in penetration testing, 
-              vulnerability assessment, and security consulting across various industries including finance, 
-              healthcare, e-commerce, and government sectors.
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p>Certified security professionals with industry-recognized credentials</p>
+    <section id="about" className="py-24 bg-white">
+      <div className="container mx-auto px-6 lg:px-16">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          {/* Left side - Image */}
+          <div className="lg:w-1/2 relative lg:ml-8">
+            <div className="relative">
+              {/* Main image */}
+              <div className="rounded-2xl overflow-hidden">
+                <img
+                  src="/assets/team-meeting.jpg"
+                  alt="Team collaboration"
+                  className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
+                />
               </div>
-              <div className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p>Comprehensive methodology covering OWASP Top 10 and beyond</p>
-              </div>
-              <div className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p>Detailed reporting with actionable remediation steps</p>
+              
+              {/* Orange circle decoration */}
+              <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#f28749]/10 -z-10" />
+              
+              {/* Stats overlay */}
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl p-6 grid grid-cols-2 gap-4">
+                {stats.map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={index} className="text-center">
+                      <Icon className="w-6 h-6 mx-auto mb-2 text-[#f28749]" />
+                      <div className="font-bold text-2xl">{stat.value}</div>
+                      <div className="text-sm text-gray-600">{stat.label}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
-          <div className="md:w-1/2">
-            <div className="mb-6">
-              <TerminalDemo />
+
+          {/* Right side - Content */}
+          <div className="lg:w-1/2 lg:pr-8">
+            <div className="max-w-xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl font-bold mb-6">
+                  About Us
+                </h2>
+                <div className="text-lg text-gray-600 mb-8">
+                  Leading Cybersecurity Solutions Provider
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <p className="text-gray-600">
+                  We're not just another cybersecurity company. We're a team of dedicated security 
+                  experts, ethical hackers, and risk analysts united by one mission: to protect 
+                  your business from evolving digital threats.
+                </p>
+
+                <p className="text-gray-600">
+                  Our comprehensive approach combines cutting-edge technology with human expertise 
+                  to deliver unparalleled security solutions. From penetration testing to incident 
+                  response, we ensure your digital assets remain protected 24/7.
+                </p>
+
+                <p className="text-gray-600">
+                  Since our founding, we've helped hundreds of organizations strengthen their 
+                  security posture, prevent data breaches, and maintain compliance with global 
+                  security standards. Let us be your trusted partner in building a resilient 
+                  cybersecurity framework.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="mt-8"
+              >
+                <button className="bg-[#f28749] text-white px-8 py-4 rounded-lg hover:bg-[#e07642] transition-colors">
+                  Learn More About Us
+                </button>
+              </motion.div>
             </div>
-            
           </div>
         </div>
       </div>

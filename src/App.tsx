@@ -1,52 +1,34 @@
-import React from 'react';
-import { 
-  Shield, 
-  Globe, 
-  Server, 
-  Smartphone, 
-  Code, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Instagram,
-  ChevronRight,
-  Home,
-  User,
-  FileText,
-  Briefcase
-} from 'lucide-react';
-import HeroSection from './components/HeroSection';
-import BrandTrust from './components/BrandTrust';
-import AboutUs from './components/AboutUs';
-import Services from './components/Services';
-import ProvenRecords from './components/ProvenRecords';
-import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
-import NeonCursor from './components/NeonCursor';
-import { NavBar } from './components/ui/tubelight-navbar';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LoadingScreen } from './components/ui/LoadingScreen';
 
-const navItems = [
-  { name: 'Home', url: '#home', icon: Home },
-  { name: 'About', url: '#about', icon: User },
-  { name: 'Services', url: '#services', icon: Briefcase },
-  { name: 'Contact', url: '#contact', icon: FileText }
-];
+const Contact = lazy(() => import('./pages/Contact'));
+const HomePage = lazy(() => import('./pages/Home'));
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // 1 second delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NeonCursor />
-      <NavBar items={navItems} />
-      <main>
-        <HeroSection />
-        <BrandTrust />
-        <AboutUs />
-        <Services />
-        <ProvenRecords />
-        <Testimonials />
-        <Footer />
-      </main>
-    </div>
+    <Router>
+      <Suspense fallback={<LoadingScreen />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

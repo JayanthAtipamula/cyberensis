@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Globe, Server, Smartphone, Code } from 'lucide-react';
+import { Shield, Globe, Server, Smartphone, Code, GraduationCap } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const Services = () => {
@@ -28,6 +28,11 @@ const Services = () => {
       title: "API Testing Services",
       description: "Specialized security testing for APIs to protect the backbone of your digital services.",
       icon: <Code className="h-8 w-8" />
+    },
+    {
+      title: "Cybersecurity Training",
+      description: "We provide quality training on Cyber Security to help your team understand and implement best security practices.",
+      icon: <GraduationCap className="h-8 w-8" />
     }
   ];
 

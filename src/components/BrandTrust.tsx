@@ -20,42 +20,34 @@ const BrandTrust: React.FC = () => {
   return (
     <section className="py-16 bg-white">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
           1K+ <span className="text-orange-500">Brands</span> Trust Us
         </h2>
       </div>
       
       <div className="relative overflow-hidden">
-        <div className="flex logos-slide">
-          {brands.map((brand, idx) => (
-            <div 
-              key={`${brand.name}-${idx}`} 
-              className="mx-12 min-w-[160px]"
-            >
-              <div className="h-16 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <img
-                  src={brand.logo}
-                  alt={`${brand.name} logo`}
-                  className="h-full w-auto object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          ))}
-          {brands.map((brand, idx) => (
-            <div 
-              key={`${brand.name}-second-${idx}`} 
-              className="mx-12 min-w-[160px]"
-            >
-              <div className="h-16 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <img
-                  src={brand.logo}
-                  alt={`${brand.name} logo`}
-                  className="h-full w-auto object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+        <div className="flex logos-slide-fast">
+          {[...Array(2)].map((_, slideIndex) => (
+            <React.Fragment key={`slide-${slideIndex}`}>
+              {brands.map((brand, idx) => (
+                <div 
+                  key={`${brand.name}-${slideIndex}-${idx}`} 
+                  className="mx-4 md:mx-12 min-w-[120px] md:min-w-[160px]"
+                >
+                  <div className="h-12 md:h-16 relative grayscale hover:grayscale-0 transition-all duration-300">
+                    <img
+                      src={brand.logo}
+                      alt={`${brand.name} logo`}
+                      className="h-full w-auto object-contain"
+                      loading="lazy"
+                      width="160"
+                      height="64"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              ))}
+            </React.Fragment>
           ))}
         </div>
       </div>
