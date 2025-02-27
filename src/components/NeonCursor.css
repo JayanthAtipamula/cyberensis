@@ -1,0 +1,66 @@
+.neon-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.cursor-main {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(242, 135, 73, 0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 10px rgba(242, 135, 73, 0.8);
+}
+
+.cursor-trail {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgb(236, 101, 23);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(242, 135, 73, 0.4) 0%, rgba(242, 135, 73, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Hide cursor on interactive elements */
+a, button, input, [data-hover="true"] {
+  cursor: none;
+}
+
+/* Hide default cursor when neon cursor is active */
+html {
+  cursor: none;
+}
+
+/* Media query for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .neon-cursor-container {
+    display: none;
+  }
+  
+  html {
+    cursor: auto;
+  }
+  
+  a, button, input, [data-hover="true"] {
+    cursor: auto;
+  }
+}
