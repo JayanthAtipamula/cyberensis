@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-6">
               <Shield className="h-8 w-8 text-[#f28749]" />
-              <span className="ml-2 text-xl font-bold">CyberShield</span>
+              <span className="ml-2 text-xl font-bold">Cyberensis Infosec</span>
             </div>
             <p className="text-gray-400 mb-6">
               Providing top-tier cybersecurity services to protect your business from evolving digital threats.
@@ -44,11 +44,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-6 border-b border-gray-700 pb-2">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#home" className="text-gray-400 hover:text-[#f28749] transition-colors">Home</a></li>
-              <li><a href="#about" className="text-gray-400 hover:text-[#f28749] transition-colors">About Us</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-[#f28749] transition-colors">Services</a></li>
-              <li><a href="#testimonials" className="text-gray-400 hover:text-[#f28749] transition-colors">Testimonials</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-[#f28749] transition-colors">Contact</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-[#f28749] transition-colors">Home</a></li>
+              <li><a href="/about" className="text-gray-400 hover:text-[#f28749] transition-colors">About Us</a></li>
+              <li><a href="/services" className="text-gray-400 hover:text-[#f28749] transition-colors">Services</a></li>
+              <li><a href="/contact" className="text-gray-400 hover:text-[#f28749] transition-colors">Contact</a></li>
             </ul>
           </div>
           
@@ -57,15 +56,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <span className="text-gray-400">123 Security Street, Cyber City, CS 12345</span>
+                <span className="text-gray-400">Cyberensis Infosec, Cyber City</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-[#f28749] mr-3" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+91 9853852852</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-[#f28749] mr-3" />
-                <span className="text-gray-400">info@cybershield.com</span>
+                <span className="text-gray-400">info@cyberensis.com</span>
               </li>
             </ul>
           </div>
@@ -74,7 +73,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 mb-4 md:mb-0">
-              © 2025 CyberShield. All rights reserved.
+              © 2024 Cyberensis Infosec. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-500 hover:text-[#f28749] transition-colors">Privacy Policy</a>

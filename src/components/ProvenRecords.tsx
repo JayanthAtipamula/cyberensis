@@ -1,18 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckSquare, Award, Users, UserPlus } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
-const Counter = ({ end, duration = 2000, label, icon: Icon }) => {
+interface CounterProps {
+  end: number;
+  duration?: number;
+  label: string;
+  icon: LucideIcon;
+}
+
+const Counter: React.FC<CounterProps> = ({ end, duration = 2000, label, icon: Icon }) => {
   const [count, setCount] = useState(0);
-  const countRef = useRef(null);
+  const countRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          let startTime;
-          let animationFrameId;
+          let startTime: number | null = null;
+          let animationFrameId: number | null = null;
 
-          const animate = (timestamp) => {
+          const animate = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
             const progress = timestamp - startTime;
             const percentage = Math.min(progress / duration, 1);
@@ -28,7 +36,9 @@ const Counter = ({ end, duration = 2000, label, icon: Icon }) => {
           animationFrameId = requestAnimationFrame(animate);
 
           return () => {
-            cancelAnimationFrame(animationFrameId);
+            if (animationFrameId) {
+              cancelAnimationFrame(animationFrameId);
+            }
           };
         }
       },
@@ -64,19 +74,19 @@ const Counter = ({ end, duration = 2000, label, icon: Icon }) => {
   );
 };
 
-const ProvenRecords = () => {
+const ProvenRecords: React.FC = () => {
   const records = [
-    { count: 6000, label: "Projects completed", icon: CheckSquare },
-    { count: 10, label: "Years of Journey", icon: Award },
-    { count: 5000, label: "Satisfied Clients", icon: Users },
-    { count: 20, label: "Professional Team", icon: UserPlus }
+    { count: 37, label: "Web Applications Secured", icon: CheckSquare },
+    { count: 62, label: "Network IP's Secured", icon: Award },
+    { count: 27, label: "Mobile Apps Secured", icon: Users },
+    { count: 52, label: "Secure Web Development", icon: UserPlus }
   ];
 
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">PROven Records</h2>
+          <h2 className="text-4xl font-bold mb-4">Our Track Record</h2>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">

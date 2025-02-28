@@ -71,11 +71,9 @@ const AboutUs = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-4xl font-bold mb-6">
-                  About Us
+                  Who We Are
                 </h2>
-                <div className="text-lg text-gray-600 mb-8">
-                  Leading Cybersecurity Solutions Provider
-                </div>
+               
               </motion.div>
 
               <motion.div
@@ -86,22 +84,15 @@ const AboutUs = () => {
                 className="space-y-6"
               >
                 <p className="text-gray-600">
-                  We're not just another cybersecurity company. We're a team of dedicated security 
-                  experts, ethical hackers, and risk analysts united by one mission: to protect 
-                  your business from evolving digital threats.
+                  Cyberensis Infosec is a global enterprise for IT Security Services & Consulting. 
+                  We're a trusted standard for companies protecting their products, brand, and 
+                  confidential information from cyber attacks.
                 </p>
 
                 <p className="text-gray-600">
-                  Our comprehensive approach combines cutting-edge technology with human expertise 
-                  to deliver unparalleled security solutions. From penetration testing to incident 
-                  response, we ensure your digital assets remain protected 24/7.
-                </p>
-
-                <p className="text-gray-600">
-                  Since our founding, we've helped hundreds of organizations strengthen their 
-                  security posture, prevent data breaches, and maintain compliance with global 
-                  security standards. Let us be your trusted partner in building a resilient 
-                  cybersecurity framework.
+                  Our comprehensive security assessments include penetration testing, vulnerability 
+                  assessments, and risk analysis, providing actionable insights to enhance your 
+                  security posture.
                 </p>
               </motion.div>
 
@@ -113,7 +104,7 @@ const AboutUs = () => {
                 className="mt-8"
               >
                 <button className="bg-[#f28749] text-white px-8 py-4 rounded-lg hover:bg-[#e07642] transition-colors">
-                  Learn More About Us
+                  Know More About Us
                 </button>
               </motion.div>
             </div>

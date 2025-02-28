@@ -1,37 +1,37 @@
 import React from 'react';
 import { Shield, Globe, Server, Smartphone, Code, GraduationCap } from 'lucide-react';
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 const Services = () => {
   const services = [
     {
       title: "Vulnerability Assessment Penetration Testing (VAPT)",
-      description: "Comprehensive security assessment to identify and exploit vulnerabilities in your systems.",
+      description: "Comprehensive security assessment to identify and exploit vulnerabilities in your systems before attackers do.",
       icon: <Shield className="h-8 w-8" />
     },
     {
       title: "Web Application Penetration Testing (WAPT)",
-      description: "In-depth security testing of web applications to uncover vulnerabilities before attackers do.",
+      description: "In-depth security testing of web applications to uncover and remediate vulnerabilities in your web-based systems.",
       icon: <Globe className="h-8 w-8" />
     },
     {
       title: "Network/Infrastructure Penetration Testing",
-      description: "Thorough assessment of network infrastructure to identify security gaps and weaknesses.",
+      description: "Thorough assessment of network infrastructure to identify security gaps and weaknesses in your network architecture.",
       icon: <Server className="h-8 w-8" />
     },
     {
       title: "Mobile Application Penetration Testing (MAPT)",
-      description: "Security testing for iOS and Android applications to ensure data protection on mobile devices.",
+      description: "Security testing for iOS and Android applications to ensure data protection and identify vulnerabilities in mobile apps.",
       icon: <Smartphone className="h-8 w-8" />
     },
     {
       title: "API Testing Services",
-      description: "Specialized security testing for APIs to protect the backbone of your digital services.",
+      description: "Specialized security testing for APIs to protect the backbone of your digital services and ensure secure data exchange.",
       icon: <Code className="h-8 w-8" />
     },
     {
-      title: "Cybersecurity Training",
-      description: "We provide quality training on Cyber Security to help your team understand and implement best security practices.",
+      title: "Consultancy Services",
+      description: "We provide expert CyberSecurity Consulting services to help your organization build a robust security posture.",
       icon: <GraduationCap className="h-8 w-8" />
     }
   ];
@@ -42,7 +42,7 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">Our Services</h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
-            We offer a comprehensive range of cybersecurity services to protect your business from evolving threats.
+            We provide total Cyber Security industry solutions to protect your business from evolving threats.
           </p>
         </div>
         

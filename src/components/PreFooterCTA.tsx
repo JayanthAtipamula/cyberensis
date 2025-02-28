@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight, Phone } from 'lucide-react';
 
 const PreFooterCTA = () => {
   return (
@@ -20,23 +20,23 @@ const PreFooterCTA = () => {
                 />
               </div>
               <div className="absolute -right-2 -top-2 w-12 h-12 bg-[#f28749] rounded-full flex items-center justify-center transform rotate-12">
-                <ArrowDownRight className="w-6 h-6 text-white transform -rotate-12" />
+                <Phone className="w-6 h-6 text-white transform -rotate-12" />
               </div>
             </div>
 
             {/* Text Content */}
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                Need expert guidance for your cybersecurity challenges?
+                Essential Cybersecurity Terms
               </h2>
               <p className="text-xl md:text-2xl font-semibold mb-8">
-                Get a free security consultation!
+                Contact us for advanced cybersecurity solutions and expert risk management.
               </p>
               <a 
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-[#f28749] rounded-lg hover:bg-[#e07642] transition-colors duration-300"
               >
-                Schedule Security Assessment
+                Contact Us Now
               </a>
             </div>
           </div>

@@ -4,6 +4,8 @@ import { LoadingScreen } from './components/ui/LoadingScreen';
 
 const Contact = lazy(() => import('./pages/Contact'));
 const HomePage = lazy(() => import('./pages/Home'));
+const AboutUsPage = lazy(() => import('./pages/AboutUs'));
+const ServicesPage = lazy(() => import('./pages/Services'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +27,8 @@ function App() {
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Suspense>

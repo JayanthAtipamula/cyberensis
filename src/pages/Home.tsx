@@ -12,8 +12,8 @@ import Footer from '../components/Footer';
 
 const navItems = [
   { name: 'Home', url: '/', icon: Home },
-  { name: 'About', url: '/#about', icon: User },
-  { name: 'Services', url: '/#services', icon: Briefcase },
+  { name: 'About', url: '/about', icon: User },
+  { name: 'Services', url: '/services', icon: Briefcase },
   { name: 'Contact', url: '/contact', icon: FileText }
 ];
 
