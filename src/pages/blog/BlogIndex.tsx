@@ -4,6 +4,9 @@ import { getAllBlogPosts, getAllCategories } from '../../services/blogService';
 import { BlogPost, Category } from '../../types/blog';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import { NavBar } from '../../components/ui/tubelight-navbar';
+import { commonNavItems } from '../../lib/navItems';
+import Footer from '../../components/Footer';
 
 export default function BlogIndex() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -72,26 +75,32 @@ export default function BlogIndex() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-      </div>
+      <>
+        <NavBar items={commonNavItems} />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+        </div>
+        <Footer />
+      </>
     );
   }
 
   return (
     <>
       <Helmet>
-        <title>Blog | Your Website Name</title>
-        <meta name="description" content="Read our latest articles and updates" />
+        <title>Blog | Cyberensis Infosec</title>
+        <meta name="description" content="Read our latest articles and updates on cybersecurity" />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <NavBar items={commonNavItems} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Our Blog
           </h1>
           <p className="text-xl text-gray-500 max-w-3xl mx-auto">
-            Stay updated with our latest articles, news, and insights.
+            Stay updated with our latest articles, news, and insights on cybersecurity.
           </p>
         </div>
 
@@ -102,7 +111,7 @@ export default function BlogIndex() {
                 onClick={() => setSelectedCategory(null)}
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
                   selectedCategory === null
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-[#f28749] text-white'
                     : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
               >
@@ -115,7 +124,7 @@ export default function BlogIndex() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-3 py-1 rounded-full text-sm font-medium ${
                     selectedCategory === category.id
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-[#f28749] text-white'
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
@@ -152,7 +161,7 @@ export default function BlogIndex() {
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex-1">
                     <h2 className="text-xl font-bold text-gray-900 mb-2">
-                      <Link to={`/blog/${post.slug}`} className="hover:text-indigo-600">
+                      <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749]">
                         {post.title}
                       </Link>
                     </h2>
@@ -183,7 +192,7 @@ export default function BlogIndex() {
                   
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
+                    className="inline-flex items-center text-[#f28749] hover:text-[#d97a3f]"
                   >
                     Read more
                     <ArrowRight className="h-4 w-4 ml-1" />
@@ -194,6 +203,8 @@ export default function BlogIndex() {
           </div>
         )}
       </div>
+
+      <Footer />
     </>
   );
 } 
