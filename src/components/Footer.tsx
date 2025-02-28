@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-500 mb-4 md:mb-0 flex flex-col md:flex-row md:items-center">
               <p className="mb-2 md:mb-0 md:mr-4">
-                © 2024 Cyberensis Infosec. All rights reserved.
+                © 2024 Cyberensis Infosec . All rights reserved.
               </p> 
               <p>
                 © Copyright 2025 by Webbingprotechnologies.
