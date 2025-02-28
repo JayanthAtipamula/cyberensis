@@ -6,6 +6,7 @@ import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
 import ProvenRecords from '../components/ProvenRecords';
 import Testimonials from '../components/Testimonials';
+import LatestBlogs from '../components/LatestBlogs';
 import PreFooterCTA from '../components/PreFooterCTA';
 import Footer from '../components/Footer';
 import { commonNavItems } from '../lib/navItems';
@@ -21,6 +22,7 @@ const HomePage = () => {
         <Services />
         <ProvenRecords />
         <Testimonials />
+        <LatestBlogs />
         <PreFooterCTA />
         <Footer />
       </main>
