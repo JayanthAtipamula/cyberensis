@@ -23,10 +23,10 @@ const Footer = () => {
               <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
+              <a href="https://x.com/cyberensis" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
+              <a href="https://www.linkedin.com/company/cyberensis-infosec/" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
               <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-[#f28749] transition-colors">
@@ -38,11 +38,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-6 border-b border-gray-700 pb-2">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-[#f28749] transition-colors">Vulnerability Assessment</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#f28749] transition-colors">Web Application Testing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#f28749] transition-colors">Network Testing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#f28749] transition-colors">Mobile App Testing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#f28749] transition-colors">API Testing</a></li>
+              <li><a href="/services/VAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Vulnerability Assessment</a></li>
+              <li><a href="/services/WAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Web Application Testing</a></li>
+              <li><a href="/services/NIPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Network Testing</a></li>
+              <li><a href="/services/MAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Mobile App Testing</a></li>
+              <li><a href="/services/CPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Cloud Penetration Testing</a></li>
             </ul>
           </div>
           

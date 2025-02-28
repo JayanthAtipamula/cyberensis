@@ -2,18 +2,14 @@ import React from 'react';
 import { NavBar } from '../components/ui/tubelight-navbar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import { CheckCircle, Award, Users, Target, Home, User, Briefcase, FileText } from 'lucide-react';
+import { CheckCircle, Award, Users, Target } from 'lucide-react';
 import BrandTrust from '../components/BrandTrust';
+import { commonNavItems } from '../lib/navItems';
 
 const AboutUsPage = () => {
   return (
     <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/#services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <AboutHero />
         <WhyChooseUs />

@@ -6,6 +6,8 @@ const Contact = lazy(() => import('./pages/Contact'));
 const HomePage = lazy(() => import('./pages/Home'));
 const AboutUsPage = lazy(() => import('./pages/AboutUs'));
 const ServicesPage = lazy(() => import('./pages/Services'));
+const PasswordStrengthCheckerPage = lazy(() => import('./pages/PasswordStrengthChecker'));
+const PasswordGeneratorPage = lazy(() => import('./pages/PasswordGenerator'));
 
 // Service Pages
 const VAPTPage = lazy(() => import('./pages/services/VAPT'));
@@ -41,6 +43,8 @@ function App() {
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/password-strength-checker" element={<PasswordStrengthCheckerPage />} />
+          <Route path="/password-generator" element={<PasswordGeneratorPage />} />
           
           {/* Service Routes */}
           <Route path="/services/VAPT" element={<VAPTPage />} />

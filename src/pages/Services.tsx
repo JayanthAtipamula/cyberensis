@@ -2,8 +2,9 @@ import React from 'react';
 import { NavBar } from '../components/ui/tubelight-navbar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import { Home, User, Briefcase, FileText, Shield, Globe, Server, Smartphone, Code, Cloud, Terminal, BookOpen, LucideIcon } from 'lucide-react';
+import { Shield, Globe, Server, Smartphone, Code, Cloud, Terminal, BookOpen, LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { commonNavItems } from '../lib/navItems';
 
 interface ServiceType {
   id: string;
@@ -22,12 +23,7 @@ interface ServiceCardProps {
 const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServicesHero />
         <CoreServices />
@@ -116,7 +112,7 @@ const CoreServices = () => {
       id: "csconsult",
       title: "Security Consulting",
       description: "Expert cybersecurity consultancy services to help your organization build a robust security posture.",
-      icon: Briefcase,
+      icon: Shield,
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       url: "/services/Consulting"
     },
