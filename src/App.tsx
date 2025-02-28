@@ -23,6 +23,19 @@ const HomePage = lazy(() => import('./pages/Home'));
 const AboutUsPage = lazy(() => import('./pages/AboutUs'));
 const ServicesPage = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
+const PasswordStrengthCheckerPage = lazy(() => import('./pages/PasswordStrengthChecker'));
+const PasswordGeneratorPage = lazy(() => import('./pages/PasswordGenerator'));
+
+// Service Pages
+const VAPTPage = lazy(() => import('./pages/services/VAPT'));
+const WAPTPage = lazy(() => import('./pages/services/WAPT'));
+const NIPTPage = lazy(() => import('./pages/services/NIPT'));
+const MAPTPage = lazy(() => import('./pages/services/MAPT'));
+const CPTPage = lazy(() => import('./pages/services/CPT'));
+const DevelopmentPage = lazy(() => import('./pages/services/Development'));
+const ConsultingPage = lazy(() => import('./pages/services/Consulting'));
+const CodeReviewPage = lazy(() => import('./pages/services/CodeReview'));
+const TrainingPage = lazy(() => import('./pages/services/Training'));
 
 function App() {
   return (
@@ -67,6 +80,63 @@ function App() {
             <Route path="/contact" element={
               <Suspense fallback={<LoadingScreen />}>
                 <Contact />
+              </Suspense>
+            } />
+            <Route path="/password-strength-checker" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <PasswordStrengthCheckerPage />
+              </Suspense>
+            } />
+            <Route path="/password-generator" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <PasswordGeneratorPage />
+              </Suspense>
+            } />
+            
+            {/* Service Routes */}
+            <Route path="/services/VAPT" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <VAPTPage />
+              </Suspense>
+            } />
+            <Route path="/services/WAPT" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <WAPTPage />
+              </Suspense>
+            } />
+            <Route path="/services/NIPT" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <NIPTPage />
+              </Suspense>
+            } />
+            <Route path="/services/MAPT" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <MAPTPage />
+              </Suspense>
+            } />
+            <Route path="/services/CPT" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <CPTPage />
+              </Suspense>
+            } />
+            <Route path="/services/Development" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <DevelopmentPage />
+              </Suspense>
+            } />
+            <Route path="/services/Consulting" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <ConsultingPage />
+              </Suspense>
+            } />
+            <Route path="/services/CodeReview" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <CodeReviewPage />
+              </Suspense>
+            } />
+            <Route path="/services/Training" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <TrainingPage />
               </Suspense>
             } />
           </Routes>
