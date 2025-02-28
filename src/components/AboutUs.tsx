@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Users, Sparkles, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
   const stats = [
@@ -103,9 +104,9 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="mt-8"
               >
-                <button className="bg-[#f28749] text-white px-8 py-4 rounded-lg hover:bg-[#e07642] transition-colors">
+                <Link to="/about" className="bg-[#f28749] text-white px-8 py-4 rounded-lg hover:bg-[#e07642] transition-colors inline-block">
                   Know More About Us
-                </button>
+                </Link>
               </motion.div>
             </div>
           </div>

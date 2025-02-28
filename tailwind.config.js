@@ -8,6 +8,8 @@ export default {
       },
       animation: {
         shine: "shine var(--duration) infinite linear",
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        ping: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
       keyframes: {
         shine: {
@@ -19,6 +21,16 @@ export default {
           },
           to: {
             "background-position": "0% 0%",
+          },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        ping: {
+          '75%, 100%': {
+            transform: 'scale(2)',
+            opacity: '0',
           },
         },
       },

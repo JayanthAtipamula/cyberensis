@@ -4,6 +4,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import { HelmetProvider } from 'react-helmet-async';
 import ProtectedRoute from './components/ProtectedRoute';
 import { LoadingScreen } from './components/ui/LoadingScreen';
+import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Admin Pages
 import Login from './pages/admin/Login';
@@ -18,6 +20,11 @@ import Categories from './pages/admin/Categories';
 import BlogIndex from './pages/blog/BlogIndex';
 import BlogPost from './pages/blog/BlogPost';
 import CategoryPage from './pages/blog/CategoryPage';
+
+// Policy Pages
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
 
 // Main Site Pages
 const HomePage = lazy(() => import('./pages/Home'));
@@ -42,6 +49,8 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
+        <WhatsAppButton />
         <AuthProvider>
           <Routes>
             {/* Admin Routes */}
@@ -94,6 +103,11 @@ function App() {
                 <PasswordGeneratorPage />
               </Suspense>
             } />
+            
+            {/* Policy Pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
             
             {/* Service Routes */}
             <Route path="/services/VAPT" element={
