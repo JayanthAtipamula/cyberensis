@@ -17,6 +17,7 @@ import Categories from './pages/admin/Categories';
 // Blog Pages
 import BlogIndex from './pages/blog/BlogIndex';
 import BlogPost from './pages/blog/BlogPost';
+import CategoryPage from './pages/blog/CategoryPage';
 
 // Main Site Pages
 const HomePage = lazy(() => import('./pages/Home'));
@@ -60,6 +61,7 @@ function App() {
             {/* Blog Routes */}
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/category/:slug" element={<CategoryPage />} />
             
             {/* Main Site Routes */}
             <Route path="/" element={
