@@ -8,8 +8,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center mb-6">
-              <Shield className="h-8 w-8 text-[#f28749]" />
-              <span className="ml-2 text-xl font-bold">Cyberensis Infosec</span>
+              <a href="/" className="flex items-center flex-shrink-0 cursor-pointer transition-opacity hover:opacity-80">
+                <img 
+                  src="/assets/logo.png" 
+                  alt="Cyberensis Infosec Logo" 
+                  className="h-10 w-auto"
+                />
+              </a>
             </div>
             <p className="text-gray-400 mb-6">
               Providing top-tier cybersecurity services to protect your business from evolving digital threats.

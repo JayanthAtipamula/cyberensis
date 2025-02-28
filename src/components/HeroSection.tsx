@@ -5,6 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Globe } from './ui/globe';
 import { ErrorBoundary } from 'react-error-boundary';
 
+const FallbackComponent = () => (
+  <div className="animate-pulse bg-gray-200 h-full w-full rounded-full" />
+);
+
 const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
   const headlines = [
@@ -19,10 +23,6 @@ const HeroSection = () => {
 
     return () => clearInterval(timer);
   }, []);
-
-  const fallbackComponent = () => (
-    <div className="animate-pulse bg-gray-200 h-full w-full rounded-full" />
-  );
 
   return (
     <section id="home" className="pt-32 md:pt-40 pb-20 bg-white relative overflow-hidden h-screen">
@@ -65,7 +65,7 @@ const HeroSection = () => {
           </div>
 
           <div className="absolute right-0 md:right-[10%] top-0 md:-top-20 h-full w-[800px] md:w-[1000px] -mr-[400px] md:-mr-[300px]">
-            <ErrorBoundary FallbackComponent={fallbackComponent}>
+            <ErrorBoundary FallbackComponent={FallbackComponent}>
               <Globe />
             </ErrorBoundary>
           </div>

@@ -29,13 +29,22 @@ const AboutHero = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6 lg:px-16">
-        <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
-          <p className="text-lg text-gray-600 mb-8">
-            At Cyberensis InfoSec we are dedicated to providing the highest quality
-            cybersecurity services to protect your business from the ever-growing threat of
-            cyberattacks. Trust us to safeguard your digital assets and ensure your peace of mind.
-          </p>
+        <div className="flex flex-col items-center">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
+            <p className="text-lg text-gray-600 mb-8">
+              At Cyberensis InfoSec we are dedicated to providing the highest quality
+              cybersecurity services to protect your business from the ever-growing threat of
+              cyberattacks. Trust us to safeguard your digital assets and ensure your peace of mind.
+            </p>
+          </div>
+          <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+              alt="Cybersecurity concept" 
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -172,7 +181,7 @@ const CompanyMissionVision = () => {
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="lg:w-1/2">
             <img 
-              src="/assets/about-image.jpg" 
+              src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
               alt="Cyberensis team" 
               className="rounded-xl shadow-lg w-full h-auto object-cover"
             />
