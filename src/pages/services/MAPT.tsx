@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Smartphone, CheckCircle } from 'lucide-react';
 import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const MAPTPage = () => {
   return (
@@ -11,6 +12,12 @@ const MAPTPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Secure Your Mobile Applications"
+          description="Contact our experts to schedule a comprehensive mobile application penetration test for iOS and Android apps."
+          buttonText="Request MAPT"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceBenefits />
         <WhyChooseUs />

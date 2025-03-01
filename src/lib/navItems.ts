@@ -1,4 +1,4 @@
-import { Home, User, Briefcase, FileText, Lock, Key, Wrench, BookOpen, Shield, Code, Server, Database, Brain, Cpu, Globe } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Lock, Key, Wrench, BookOpen, Shield, Code, Server, Database, Brain, Cpu, Globe, Cloud, GraduationCap } from 'lucide-react';
 
 export const commonNavItems = [
   { name: 'Home', url: '/', icon: Home },
@@ -12,9 +12,11 @@ export const commonNavItems = [
       { name: 'Web Application Testing', url: '/services/WAPT', icon: Globe },
       { name: 'Network Infrastructure Testing', url: '/services/NIPT', icon: Server },
       { name: 'Mobile Application Testing', url: '/services/MAPT', icon: Cpu },
+      { name: 'Cloud Penetration Testing', url: '/services/CPT', icon: Cloud },
       { name: 'Code Review', url: '/services/CodeReview', icon: Code },
       { name: 'Development', url: '/services/Development', icon: Database },
-      { name: 'Consulting', url: '/services/Consulting', icon: Brain }
+      { name: 'Consulting', url: '/services/Consulting', icon: Brain },
+      { name: 'Cybersecurity Trainings', url: '/services/Training', icon: GraduationCap }
     ]
   },
   { 

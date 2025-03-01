@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Shield, CheckCircle } from 'lucide-react';
 import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const VAPTPage = () => {
   return (
@@ -11,6 +12,12 @@ const VAPTPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Get Started with Vulnerability Assessment"
+          description="Contact our experts to schedule a comprehensive vulnerability assessment and penetration testing for your systems."
+          buttonText="Request VAPT"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceBenefits />
         <WhyChooseUs />

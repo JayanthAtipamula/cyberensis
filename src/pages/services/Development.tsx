@@ -3,18 +3,21 @@ import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Code, CheckCircle, Monitor, Smartphone, Lock, Shield } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const DevelopmentPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Build Secure Applications"
+          description="Contact our experts to discuss your secure application development needs for web and mobile platforms."
+          buttonText="Start Your Project"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceOfferings />
         <ServiceBenefits />

@@ -3,18 +3,21 @@ import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, CheckCircle, ShieldCheck, Users, FileCheck, BookOpen } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const ConsultingPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Expert Cybersecurity Consulting"
+          description="Contact our consultants to help your organization build a robust security posture and address your specific security challenges."
+          buttonText="Get Expert Advice"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceOfferings />
         <ServiceBenefits />

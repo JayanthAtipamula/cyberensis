@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Globe, CheckCircle } from 'lucide-react';
 import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const WAPTPage = () => {
   return (
@@ -11,6 +12,12 @@ const WAPTPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Secure Your Web Applications"
+          description="Contact our experts to schedule a comprehensive web application penetration test to identify and fix vulnerabilities."
+          buttonText="Request WAPT"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceBenefits />
         <WhyChooseUs />

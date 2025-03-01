@@ -12,6 +12,7 @@ import LatestBlogs from '../components/LatestBlogs';
 import PreFooterCTA from '../components/PreFooterCTA';
 import Footer from '../components/Footer';
 import { commonNavItems } from '../lib/navItems';
+import PromotionalBanner from '../components/PromotionalBanner';
 
 const HomePage = () => {
   return (
@@ -25,6 +26,12 @@ const HomePage = () => {
         <SecurityApproach />
         <AboutUs />
         <Services />
+        <PromotionalBanner 
+          title="Get Started with Cybersecurity Assessment"
+          description="Contact our experts to learn more about pricing, receive a free security risk assessment, or schedule a demo."
+          buttonText="Get a Demo"
+          buttonLink="/contact"
+        />
         <Testimonials />
         <LatestBlogs />
         <PreFooterCTA />

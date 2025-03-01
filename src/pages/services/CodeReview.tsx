@@ -3,18 +3,21 @@ import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Terminal, CheckCircle, Code, AlertTriangle, FileSearch, ShieldCheck } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const CodeReviewPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Secure Your Code Base"
+          description="Contact our experts to schedule a thorough source code review to identify security vulnerabilities in your applications."
+          buttonText="Request Code Review"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceProcess />
         <ServiceBenefits />

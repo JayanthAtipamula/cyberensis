@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Cloud, CheckCircle } from 'lucide-react';
 import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const CPTPage = () => {
   return (
@@ -11,6 +12,12 @@ const CPTPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Secure Your Cloud Infrastructure"
+          description="Contact our experts to schedule a comprehensive cloud penetration test to identify and fix vulnerabilities in your cloud environment."
+          buttonText="Request CPT"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceProcess />
         <ServiceBenefits />

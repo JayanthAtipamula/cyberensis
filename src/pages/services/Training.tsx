@@ -2,23 +2,27 @@ import React from 'react';
 import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
-import { Home, User, Briefcase, FileText, BookOpen, CheckCircle, Users, ShieldAlert, Laptop, GraduationCap } from 'lucide-react';
+import { Home, User, Briefcase, FileText, BookOpen, CheckCircle, Users, ShieldAlert, Laptop, GraduationCap, Globe } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const TrainingPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Empower Your Team with Cybersecurity Knowledge"
+          description="Contact us to schedule comprehensive cybersecurity training programs tailored to your organization's needs."
+          buttonText="Schedule Training"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceOfferings />
         <ServiceBenefits />
         <WhyChooseUs />
+        <TrainingCards />
       </main>
       <Footer />
     </div>
@@ -88,6 +92,63 @@ const ServiceDetails = () => {
                   <span>Enhance your overall security posture</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TrainingCards = () => {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-6 lg:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-10 text-center">Get Started with Cybersecurity</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Business Cybersecurity Requirements Card */}
+            <div className="bg-white p-10 rounded-lg border border-gray-200 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-teal-100 p-3 rounded-full mb-4">
+                <ShieldAlert className="h-10 w-10 text-teal-500" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">
+                Let us assist you with your Business Cybersecurity Requirements
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Get an Immediate Support!!!
+              </p>
+              <p className="text-gray-600 mb-8">
+                Our Support Team is just a Click of a Button Away.
+              </p>
+              <a 
+                href="/contact" 
+                className="inline-block bg-[#f28749] text-white font-medium px-6 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
+              >
+                Connect Now!
+              </a>
+            </div>
+            
+            {/* Get Trained, Get Certified Card */}
+            <div className="bg-white p-10 rounded-lg border border-gray-200 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-teal-100 p-3 rounded-full mb-4">
+                <Globe className="h-10 w-10 text-teal-500" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">
+                Get Trained, Get Certified
+              </h3>
+              <p className="text-gray-600 mb-6">
+                We provide multiple trainings.
+              </p>
+              <p className="text-gray-600 mb-8">
+                On Ethical Hacking, Bug Hunting, VAPT, SOC, Web Application Security, Compliance, etc.
+              </p>
+              <a 
+                href="/services/training-courses" 
+                className="inline-block bg-[#f28749] text-white font-medium px-6 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
+              >
+                Explore Now!
+              </a>
             </div>
           </div>
         </div>
@@ -295,14 +356,7 @@ const WhyChooseUs = () => {
             ))}
           </div>
           
-          <div className="mt-12 text-center">
-            <a 
-              href="/contact" 
-              className="inline-block bg-[#f28749] text-white font-medium px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
-            >
-              Contact Us for Cybersecurity Training
-            </a>
-          </div>
+         
         </div>
       </div>
     </section>
