@@ -182,7 +182,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         
         <Link 
           to={service.url} 
-          className="text-[#f28749] font-medium hover:underline inline-flex items-center"
+          className="inline-flex items-center px-4 py-2 border border-[#f28749] text-sm font-medium rounded-md text-[#f28749] bg-transparent hover:bg-[#fff8f4] transition-colors duration-300"
         >
           Read more
           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

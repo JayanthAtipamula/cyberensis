@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,13 +9,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center mb-6">
-              <a href="/" className="flex items-center flex-shrink-0 cursor-pointer transition-opacity hover:opacity-80">
+              <Link to="/" className="flex items-center flex-shrink-0 cursor-pointer transition-opacity hover:opacity-80">
                 <img 
                   src="/assets/logo.png" 
                   alt="Cyberensis Infosec Logo" 
                   className="h-10 w-auto"
                 />
-              </a>
+              </Link>
             </div>
             <p className="text-gray-400 mb-6">
               Providing top-tier cybersecurity services to protect your business from evolving digital threats.
@@ -38,21 +39,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-6 border-b border-gray-700 pb-2">Services</h3>
             <ul className="space-y-3">
-              <li><a href="/services/VAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Vulnerability Assessment</a></li>
-              <li><a href="/services/WAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Web Application Testing</a></li>
-              <li><a href="/services/NIPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Network Testing</a></li>
-              <li><a href="/services/MAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Mobile App Testing</a></li>
-              <li><a href="/services/CPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Cloud Penetration Testing</a></li>
+              <li><Link to="/services/VAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Vulnerability Assessment</Link></li>
+              <li><Link to="/services/WAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Web Application Testing</Link></li>
+              <li><Link to="/services/NIPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Network Testing</Link></li>
+              <li><Link to="/services/MAPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Mobile App Testing</Link></li>
+              <li><Link to="/services/CPT" className="text-gray-400 hover:text-[#f28749] transition-colors">Cloud Penetration Testing</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-bold mb-6 border-b border-gray-700 pb-2">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="/" className="text-gray-400 hover:text-[#f28749] transition-colors">Home</a></li>
-              <li><a href="/about" className="text-gray-400 hover:text-[#f28749] transition-colors">About Us</a></li>
-              <li><a href="/services" className="text-gray-400 hover:text-[#f28749] transition-colors">Services</a></li>
-              <li><a href="/contact" className="text-gray-400 hover:text-[#f28749] transition-colors">Contact</a></li>
+              <li><Link to="/" className="text-gray-400 hover:text-[#f28749] transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-[#f28749] transition-colors">About Us</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-[#f28749] transition-colors">Services</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-[#f28749] transition-colors">Contact</Link></li>
             </ul>
           </div>
           
@@ -77,13 +78,18 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 mb-4 md:mb-0">
-              © 2024 Cyberensis Infosec. All rights reserved.
-            </p>
+            <div className="text-gray-500 mb-4 md:mb-0 flex flex-col md:flex-row md:items-center">
+              <p className="mb-2 md:mb-0 md:mr-4">
+                © 2024 Cyberensis Infosec . All rights reserved.
+              </p> 
+              <p>
+                © Copyright 2025 by Webbingprotechnologies.
+              </p>
+            </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-[#f28749] transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-500 hover:text-[#f28749] transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-500 hover:text-[#f28749] transition-colors">Cookie Policy</a>
+              <Link to="/privacy-policy" className="text-gray-500 hover:text-[#f28749] transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="text-gray-500 hover:text-[#f28749] transition-colors">Terms of Service</Link>
+              <Link to="/cookie-policy" className="text-gray-500 hover:text-[#f28749] transition-colors">Cookie Policy</Link>
             </div>
           </div>
         </div>

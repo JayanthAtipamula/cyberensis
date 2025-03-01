@@ -4,6 +4,9 @@ import { getBlogPostBySlug, getAllCategories } from '../../services/blogService'
 import { BlogPost, Category } from '../../types/blog';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, Tag, ArrowLeft } from 'lucide-react';
+import { NavBar } from '../../components/ui/tubelight-navbar';
+import { commonNavItems } from '../../lib/navItems';
+import Footer from '../../components/Footer';
 
 export default function BlogPostPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
@@ -71,31 +74,39 @@ export default function BlogPostPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-      </div>
+      <>
+        <NavBar items={commonNavItems} />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+        </div>
+        <Footer />
+      </>
     );
   }
 
   if (error || !post) {
     return (
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white shadow rounded-lg p-6 text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            {error || 'Blog post not found'}
-          </h1>
-          <p className="text-gray-600 mb-6">
-            The blog post you're looking for doesn't exist or has been removed.
-          </p>
-          <Link
-            to="/blog"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
+      <>
+        <NavBar items={commonNavItems} />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
+          <div className="bg-white shadow rounded-lg p-6 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              {error || 'Blog post not found'}
+            </h1>
+            <p className="text-gray-600 mb-6">
+              The blog post you're looking for doesn't exist or has been removed.
+            </p>
+            <Link
+              to="/blog"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Blog
+            </Link>
+          </div>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 
@@ -114,7 +125,9 @@ export default function BlogPostPage() {
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <NavBar items={commonNavItems} />
+
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
         <div className="mb-6">
           <Link
             to="/blog"
@@ -169,6 +182,8 @@ export default function BlogPostPage() {
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>
+
+      <Footer />
     </>
   );
 } 

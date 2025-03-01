@@ -75,26 +75,36 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const handleDropdownToggle = (itemName: string) => {
-    if (openDropdown === itemName) {
-      setOpenDropdown(null)
-    } else {
-      setOpenDropdown(itemName)
+  const handleDropdownToggle = (itemName: string, e?: React.MouseEvent) => {
+    // Stop propagation if event is provided
+    if (e) {
+      e.stopPropagation();
     }
-  }
+    
+    if (openDropdown === itemName) {
+      setOpenDropdown(null);
+    } else {
+      setOpenDropdown(itemName);
+    }
+  };
 
-  const handleClickOutside = () => {
-    setOpenDropdown(null)
-  }
+  const handleClickOutside = (e: MouseEvent) => {
+    // Don't close if clicking on a dropdown toggle button
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-dropdown-toggle]')) {
+      return;
+    }
+    setOpenDropdown(null);
+  };
 
   useEffect(() => {
     if (openDropdown) {
-      document.addEventListener('click', handleClickOutside)
+      document.addEventListener('click', handleClickOutside);
     }
     return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [openDropdown])
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [openDropdown]);
 
   return (
     <>
@@ -131,7 +141,8 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                     {hasChildren ? (
                       <div className="relative">
                         <button
-                          onClick={() => handleDropdownToggle(item.name)}
+                          onClick={(e) => handleDropdownToggle(item.name, e)}
+                          data-dropdown-toggle="true"
                           className={cn(
                             "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300 flex items-center",
                             "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
@@ -262,7 +273,8 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                       {hasChildren ? (
                         <>
                           <button
-                            onClick={() => handleDropdownToggle(item.name)}
+                            onClick={(e) => handleDropdownToggle(item.name, e)}
+                            data-dropdown-toggle="true"
                             className={cn(
                               "flex items-center justify-between w-full px-4 py-3 rounded-lg transition-all duration-300",
                               "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
