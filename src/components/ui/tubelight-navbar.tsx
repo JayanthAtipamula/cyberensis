@@ -23,6 +23,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
   // Update active tab based on current URL
   useEffect(() => {
@@ -136,9 +137,16 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                 const isActive = activeTab === item.name
                 const hasChildren = item.children && item.children.length > 0
                 const isDropdownOpen = openDropdown === item.name
+                const isHovered = hoveredItem === item.name
 
                 return (
-                  <div key={item.name} className="relative" onClick={(e) => e.stopPropagation()}>
+                  <div 
+                    key={item.name} 
+                    className="relative" 
+                    onClick={(e) => e.stopPropagation()}
+                    onMouseEnter={() => setHoveredItem(item.name)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
                     {hasChildren ? (
                       <div className="relative">
                         <button
@@ -152,7 +160,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                           )}
                         >
                           <span>{item.name}</span>
-                          <ChevronDown size={16} className={`ml-1 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                          <ChevronDown size={16} className={`ml-1 transition-transform ${(isDropdownOpen || isHovered) ? 'rotate-180' : ''}`} />
                           {isActive && (
                             <motion.div
                               layoutId="lamp"
@@ -173,9 +181,9 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                           )}
                         </button>
                         
-                        {/* Dropdown Menu */}
+                        {/* Dropdown Menu - Show on hover or click */}
                         <AnimatePresence>
-                          {isDropdownOpen && (
+                          {(isDropdownOpen || isHovered) && (
                             <motion.div
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -183,6 +191,9 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                               transition={{ duration: 0.2 }}
                               className="absolute mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-20"
                             >
+                              {/* Colorful top indicator line */}
+                              <div className="h-1 w-full bg-gradient-to-r from-[#f28749] via-[#f28749]/80 to-[#f28749]"></div>
+                              
                               <div className="py-2">
                                 {item.children?.map((child) => {
                                   const ChildIcon = child.icon
