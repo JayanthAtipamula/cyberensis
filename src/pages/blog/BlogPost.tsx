@@ -89,11 +89,11 @@ export default function BlogPostPage() {
       <>
         <NavBar items={commonNavItems} />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
-          <div className="bg-white shadow rounded-lg p-6 text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               {error || 'Blog post not found'}
             </h1>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               The blog post you're looking for doesn't exist or has been removed.
             </p>
             <Link
@@ -131,7 +131,7 @@ export default function BlogPostPage() {
         <div className="mb-6">
           <Link
             to="/blog"
-            className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700"
+            className="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Blog
@@ -148,11 +148,11 @@ export default function BlogPostPage() {
           </div>
         )}
 
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {post.title}
         </h1>
 
-        <div className="flex flex-wrap items-center text-sm text-gray-500 mb-8">
+        <div className="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 mb-8">
           <div className="flex items-center mr-6 mb-2">
             <Calendar className="h-4 w-4 mr-1" />
             <time dateTime={new Date(post.createdAt).toISOString()}>
@@ -167,7 +167,7 @@ export default function BlogPostPage() {
                 {categoryNames.map((category, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200"
                   >
                     {category}
                   </span>
@@ -178,7 +178,7 @@ export default function BlogPostPage() {
         </div>
 
         <div 
-          className="prose prose-indigo max-w-none"
+          className="prose prose-indigo dark:prose-invert max-w-none dark:text-gray-200"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>

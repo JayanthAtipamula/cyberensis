@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { 
@@ -16,6 +16,22 @@ export default function AdminLayout() {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Force light mode when in admin section
+  useEffect(() => {
+    // Store the original theme preference
+    const originalTheme = document.documentElement.classList.contains('dark');
+    
+    // Remove dark mode if it's active
+    document.documentElement.classList.remove('dark');
+    
+    // Restore original theme when leaving admin section
+    return () => {
+      if (originalTheme) {
+        document.documentElement.classList.add('dark');
+      }
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {

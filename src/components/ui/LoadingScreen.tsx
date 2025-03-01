@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center">
       <div className="text-center">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -39,7 +39,7 @@ export const LoadingScreen = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-xl font-semibold text-gray-800 mb-2"
+            className="text-xl font-semibold text-gray-800 dark:text-white mb-2"
           >
             Initializing Security Protocols
           </motion.h2>
@@ -48,7 +48,7 @@ export const LoadingScreen = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-gray-500"
+            className="text-gray-500 dark:text-gray-300"
           >
             Please wait while we secure your connection...
           </motion.div>

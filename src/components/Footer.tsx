@@ -78,18 +78,19 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-500 mb-4 md:mb-0 flex flex-col md:flex-row md:items-center">
-              <p className="mb-2 md:mb-0 md:mr-4">
-                © 2024 Cyberensis Infosec . All rights reserved.
-              </p> 
-              <p>
-                © Copyright 2025 by Webbingprotechnologies.
-              </p>
-            </div>
+            <p className="text-gray-500 text-sm mb-4 md:mb-0">
+              © {new Date().getFullYear()} Cyberensis Infosec. All rights reserved.
+            </p>
             <div className="flex space-x-6">
-              <Link to="/privacy-policy" className="text-gray-500 hover:text-[#f28749] transition-colors">Privacy Policy</Link>
-              <Link to="/terms-of-service" className="text-gray-500 hover:text-[#f28749] transition-colors">Terms of Service</Link>
-              <Link to="/cookie-policy" className="text-gray-500 hover:text-[#f28749] transition-colors">Cookie Policy</Link>
+              <Link to="/privacy-policy" className="text-gray-500 hover:text-[#f28749] text-sm transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="text-gray-500 hover:text-[#f28749] text-sm transition-colors">
+                Terms of Service
+              </Link>
+              <Link to="/cookie-policy" className="text-gray-500 hover:text-[#f28749] text-sm transition-colors">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

@@ -63,13 +63,13 @@ const Counter: React.FC<CounterProps> = ({ end, duration = 2000, label, icon: Ic
           <Icon className="w-12 h-12 text-[#f28749]" />
         </div>
       </div>
-      <div className="text-6xl font-bold mb-4 text-gray-800" style={{ 
+      <div className="text-6xl font-bold mb-4 text-gray-800 dark:text-gray-200" style={{ 
         WebkitTextStroke: '1px currentColor',
-        WebkitTextFillColor: 'white'
+        WebkitTextFillColor: 'transparent',
       }}>
         {count}+
       </div>
-      <div className="text-gray-700 text-lg">{label}</div>
+      <div className="text-gray-700 dark:text-gray-300 text-lg">{label}</div>
     </div>
   );
 };
@@ -83,10 +83,10 @@ const ProvenRecords: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Our Track Record</h2>
+          <h2 className="text-4xl font-bold mb-4 dark:text-white">Our Track Record</h2>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">

@@ -3,16 +3,12 @@ import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Smartphone, CheckCircle } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
 
 const MAPTPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
         <ServiceDetails />
@@ -26,19 +22,19 @@ const MAPTPage = () => {
 
 const ServiceHero = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="flex flex-col items-center">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Mobile Application Penetration Testing (MAPT)</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">Mobile Application Penetration Testing (MAPT)</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Security testing for iOS and Android applications to ensure data protection and identify vulnerabilities in mobile apps.
             </p>
           </div>
           <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg">
             <img 
               src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1467&q=80" 
-              alt="Mobile Application Penetration Testing Services" 
+              alt="Mobile Application Penetration Testing" 
               className="w-full h-auto"
             />
           </div>
@@ -50,51 +46,45 @@ const ServiceHero = () => {
 
 const ServiceDetails = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">What is Mobile Application Penetration Testing?</h2>
+          <div className="flex items-center mb-8">
+            <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-full mr-4">
+              <Smartphone className="h-8 w-8 text-[#f28749]" />
+            </div>
+            <h2 className="text-3xl font-bold dark:text-white">What is Mobile Application Penetration Testing?</h2>
+          </div>
           
-          <div className="prose prose-lg max-w-none">
-            <p className="mb-6">
-              Mobile Application Penetration Testing (MAPT) is a specialized security assessment that identifies and exploits vulnerabilities in mobile applications for both Android and iOS platforms. As mobile apps increasingly handle sensitive data and provide access to critical services, ensuring their security has become essential for organizations.
+          <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
+            <p>
+              Mobile Application Penetration Testing (MAPT) is a specialized security assessment that identifies and exploits vulnerabilities in mobile applications for iOS and Android platforms. This proactive approach helps organizations secure their mobile apps before malicious actors can discover and exploit weaknesses.
             </p>
             
-            <h3 className="text-2xl font-semibold mt-10 mb-4">The Mobile Security Challenge</h3>
-            <p className="mb-6">
-              New technologies will always be open for new security flaws in mobile infrastructure. Mobile applications face unique security challenges due to their diverse operating environments, varying platform security models, and the personal nature of mobile devices. Our MAPT service helps you address these challenges by identifying vulnerabilities before they can be exploited.
+            <p className="mt-4">
+              Our MAPT service examines various aspects of mobile applications, including:
             </p>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm my-10">
-              <h3 className="text-2xl font-semibold mb-4">Our MAPT Methodology</h3>
-              <p className="mt-4">
-                We use multiple testing methodologies like OWASP Mobile Top 10, OSSTMM, and standard penetration testing methodologies to analyze the weaknesses in Android and iOS mobile applications. Our approach combines automated scanning with manual testing to provide comprehensive coverage of potential security issues.
-              </p>
-            </div>
-            
-            <h3 className="text-2xl font-semibold mt-10 mb-4">What We Test</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">Client-Side Security</h4>
-                <p>Assessment of the mobile app's client-side code, including data storage, input validation, and authentication mechanisms.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">API Security</h4>
-                <p>Testing of the APIs that mobile apps use to communicate with backend servers for vulnerabilities like improper authentication or data leakage.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">Data Storage</h4>
-                <p>Evaluation of how sensitive data is stored on the device, including encryption implementation and secure storage usage.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">Network Communication</h4>
-                <p>Analysis of network traffic to identify insecure data transmission, certificate validation issues, and other network-related vulnerabilities.</p>
-              </div>
-            </div>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <strong className="text-gray-900 dark:text-white">Client-side security</strong> - Examining the mobile app code for vulnerabilities and insecure coding practices.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Data storage security</strong> - Assessing how sensitive data is stored on the device and whether it's properly encrypted.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Authentication and authorization</strong> - Testing the security of login mechanisms and access controls.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Network communication</strong> - Analyzing data transmission between the app and backend servers for security issues.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Platform interaction</strong> - Evaluating how the app interacts with the mobile operating system and other apps.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Backend API security</strong> - Testing the security of the APIs that the mobile app communicates with.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -104,22 +94,23 @@ const ServiceDetails = () => {
 
 const ServiceBenefits = () => {
   const benefits = [
-    "Identification of security vulnerabilities specific to mobile platforms",
-    "Protection of sensitive user data stored on mobile devices",
-    "Verification of secure communication between mobile apps and backend services",
-    "Assessment of compliance with platform-specific security guidelines",
-    "Evaluation of authentication and authorization mechanisms",
-    "Detection of insecure data storage practices",
-    "Identification of code-level vulnerabilities and insecure coding practices"
+    "Identify security vulnerabilities in your mobile applications before release",
+    "Protect sensitive user data stored on mobile devices",
+    "Ensure secure communication between mobile apps and backend servers",
+    "Receive detailed remediation guidance specific to mobile platforms",
+    "Meet compliance requirements for mobile app security",
+    "Reduce the risk of data breaches through mobile applications",
+    "Enhance user trust by providing secure mobile experiences",
+    "Protect your brand reputation from security incidents"
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Benefits of Mobile Application Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Benefits of Our Mobile App Testing</h2>
           
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
               <motion.div 
                 key={index}
@@ -129,40 +120,10 @@ const ServiceBenefits = () => {
                 viewport={{ once: true }}
                 className="flex items-start"
               >
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p className="text-lg">{benefit}</p>
+                <CheckCircle className="h-6 w-6 text-[#f28749] flex-shrink-0 mt-1 mr-3" />
+                <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="mt-12">
-            <h3 className="text-2xl font-semibold mb-6">Our MAPT Process</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 my-8">
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="bg-[#f28749] text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 font-bold">1</div>
-                <h4 className="text-xl font-semibold mb-3">Application Analysis</h4>
-                <p>Understanding the app's architecture, features, and security requirements</p>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="bg-[#f28749] text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 font-bold">2</div>
-                <h4 className="text-xl font-semibold mb-3">Static & Dynamic Analysis</h4>
-                <p>Examining code and runtime behavior to identify potential vulnerabilities</p>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="bg-[#f28749] text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 font-bold">3</div>
-                <h4 className="text-xl font-semibold mb-3">Vulnerability Exploitation</h4>
-                <p>Attempting to exploit identified vulnerabilities to confirm their existence</p>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="bg-[#f28749] text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 font-bold">4</div>
-                <h4 className="text-xl font-semibold mb-3">Reporting & Remediation</h4>
-                <p>Detailed reporting with clear remediation steps and post-remediation testing</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -172,20 +133,31 @@ const ServiceBenefits = () => {
 
 const WhyChooseUs = () => {
   const reasons = [
-    "Specialized expertise in both Android and iOS security testing",
-    "Comprehensive testing methodology covering OWASP Mobile Top 10 and beyond",
-    "Experience with a wide range of mobile app architectures and technologies",
-    "Detailed reports with clear remediation guidance specific to mobile platforms",
-    "Post-remediation verification to ensure vulnerabilities are properly fixed"
+    {
+      title: "Mobile Security Specialists",
+      description: "Our team includes experts in iOS and Android security who understand the unique vulnerabilities and attack vectors specific to mobile platforms."
+    },
+    {
+      title: "Platform-Specific Expertise",
+      description: "We have deep knowledge of both iOS and Android security models, allowing us to identify platform-specific vulnerabilities that generalist testers might miss."
+    },
+    {
+      title: "Comprehensive Testing Methodology",
+      description: "Our approach combines automated scanning with manual testing to ensure thorough coverage of all potential security issues in your mobile applications."
+    },
+    {
+      title: "Developer-Friendly Reporting",
+      description: "We provide clear, actionable reports with specific remediation guidance that your development team can easily understand and implement."
+    }
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Why Choose Cyberensis for Mobile App Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Why Choose Our Mobile App Testing</h2>
           
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {reasons.map((reason, index) => (
               <motion.div 
                 key={index}
@@ -193,25 +165,12 @@ const WhyChooseUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-xl shadow-sm"
+                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm"
               >
-                <div className="flex items-start">
-                  <div className="bg-[#f28749] bg-opacity-10 p-2 rounded-lg mr-4 mt-1">
-                    <Smartphone className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <p className="text-lg">{reason}</p>
-                </div>
+                <h3 className="text-xl font-semibold mb-3 dark:text-white">{reason.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{reason.description}</p>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <a 
-              href="/contact" 
-              className="inline-block bg-[#f28749] text-white font-medium px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
-            >
-              Contact Us for Mobile App Testing
-            </a>
           </div>
         </div>
       </div>

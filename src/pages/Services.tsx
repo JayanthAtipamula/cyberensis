@@ -22,7 +22,7 @@ interface ServiceCardProps {
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServicesHero />
@@ -35,12 +35,12 @@ const ServicesPage = () => {
 
 const ServicesHero = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="flex flex-col items-center">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">Our Services</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               We are pleased to offer the following services to our clients, providing comprehensive
               cybersecurity solutions to protect your business from evolving threats.
             </p>
@@ -135,10 +135,10 @@ const CoreServices = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Core Services</h2>
+          <h2 className="text-3xl font-bold mb-4 dark:text-white">Our Core Services</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -160,7 +160,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+      className="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-transparent dark:border-gray-600"
     >
       <div className="h-48 overflow-hidden">
         <img 
@@ -172,17 +172,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       
       <div className="p-6">
         <div className="flex items-center mb-4">
-          <div className="bg-[#f28749] bg-opacity-10 p-2 rounded-lg mr-3">
+          <div className="bg-[#f28749] bg-opacity-10 dark:bg-[#f28749] dark:bg-opacity-20 p-2 rounded-lg mr-3">
             <Icon className="h-6 w-6 text-[#f28749]" />
           </div>
-          <h3 className="text-xl font-semibold">{service.title}</h3>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{service.title}</h3>
         </div>
         
-        <p className="text-gray-600 mb-6">{service.description}</p>
+        <p className="text-gray-600 dark:text-gray-200 mb-6">{service.description}</p>
         
         <Link 
           to={service.url} 
-          className="inline-flex items-center px-4 py-2 border border-[#f28749] text-sm font-medium rounded-md text-[#f28749] bg-transparent hover:bg-[#fff8f4] transition-colors duration-300"
+          className="inline-flex items-center px-4 py-2 border border-[#f28749] text-sm font-medium rounded-md text-[#f28749] bg-transparent hover:bg-[#fff8f4] dark:hover:bg-[#f28749]/20 dark:text-[#ff9a5e] transition-colors duration-300"
         >
           Read more
           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -191,6 +191,52 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         </Link>
       </div>
     </motion.div>
+  );
+};
+
+const ServiceProcess = () => {
+  return (
+    <section className="py-16 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-6 lg:px-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-10 dark:text-white">The Process of Cloud Penetration Testing</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-transparent dark:border-gray-700">
+              <div className="bg-[#f28749] text-white w-12 h-12 rounded-full flex items-center justify-center mb-6 font-bold text-xl">1</div>
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">Scope and Information Gathering</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                Gathering required information to begin our penetration testing. Environment details, access to the application with the right permission, Cloud service providers information hosting and services obtained from the cloud service provider.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-transparent dark:border-gray-700">
+              <div className="bg-[#f28749] text-white w-12 h-12 rounded-full flex items-center justify-center mb-6 font-bold text-xl">2</div>
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">Planning and Assessment</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                As per given information, Penetration testers will initiate analysis and multiple attacks on cloud environment to identify Possibilities of vulnerabilities. Custom scripts, open-source exploits and tools were used to assess the occurrence of issues in a cloud-based environment.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-transparent dark:border-gray-700">
+              <div className="bg-[#f28749] text-white w-12 h-12 rounded-full flex items-center justify-center mb-6 font-bold text-xl">3</div>
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">Reporting and Remediation</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                After assessing the vulnerabilities manual and automated testing a brief report will be generated with all vulnerabilities and loopholes. Followed by remediations will also discuss with the cloud service provider as well as the client.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-transparent dark:border-gray-700">
+              <div className="bg-[#f28749] text-white w-12 h-12 rounded-full flex items-center justify-center mb-6 font-bold text-xl">4</div>
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">Retest</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                Once remediation process gets done, Pen-tester will test again to confirm whether remediation was appropriately taken place or not.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

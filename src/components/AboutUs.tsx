@@ -28,7 +28,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Left side - Image */}
@@ -47,14 +47,16 @@ const AboutUs = () => {
               <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#f28749]/10 -z-10" />
               
               {/* Stats overlay */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl p-6 grid grid-cols-2 gap-4">
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 grid grid-cols-2 gap-4">
                 {stats.map((stat, index) => {
                   const Icon = stat.icon;
                   return (
-                    <div key={index} className="text-center">
-                      <Icon className="w-6 h-6 mx-auto mb-2 text-[#f28749]" />
-                      <div className="font-bold text-2xl">{stat.value}</div>
-                      <div className="text-sm text-gray-600">{stat.label}</div>
+                    <div key={index} className="flex flex-col items-center">
+                      <div className="bg-[#f28749]/10 p-2 rounded-full mb-2">
+                        <Icon className="h-5 w-5 text-[#f28749]" />
+                      </div>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
                     </div>
                   );
                 })}
@@ -63,51 +65,45 @@ const AboutUs = () => {
           </div>
 
           {/* Right side - Content */}
-          <div className="lg:w-1/2 lg:pr-8">
-            <div className="max-w-xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl font-bold mb-6">
-                  Who We Are
-                </h2>
-               
-              </motion.div>
+          <div className="lg:w-1/2">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+              Securing Your Digital Future with Expert Solutions
+            </h2>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Cyberensis Infosec is a global enterprise for IT Security Services & Consulting. 
+                We're a trusted standard for companies protecting their products, brand, and 
+                confidential information from cyber attacks.
+              </p>
+            </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                <p className="text-gray-600">
-                  Cyberensis Infosec is a global enterprise for IT Security Services & Consulting. 
-                  We're a trusted standard for companies protecting their products, brand, and 
-                  confidential information from cyber attacks.
-                </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
+                Our comprehensive security assessments include penetration testing, vulnerability 
+                assessments, and risk analysis, providing actionable insights to enhance your 
+                security posture.
+              </p>
+            </motion.div>
 
-                <p className="text-gray-600">
-                  Our comprehensive security assessments include penetration testing, vulnerability 
-                  assessments, and risk analysis, providing actionable insights to enhance your 
-                  security posture.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="mt-8"
-              >
-                <Link to="/about" className="bg-[#f28749] text-white px-8 py-4 rounded-lg hover:bg-[#e07642] transition-colors inline-block">
-                  Know More About Us
-                </Link>
-              </motion.div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/about" className="px-6 py-3 bg-[#f28749] hover:bg-[#e07339] text-white font-medium rounded-lg transition-colors">
+                Learn More
+              </Link>
+              <Link to="/contact" className="px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium rounded-lg border border-gray-300 dark:border-gray-600 transition-colors">
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>

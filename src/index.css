@@ -23,3 +23,21 @@ html {
 body {
   font-family: 'Inter', sans-serif;
 }
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Light mode styles */
+.light {
+  color-scheme: light;
+}
+
+.light body {
+  @apply bg-white text-gray-900;
+}

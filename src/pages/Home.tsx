@@ -13,7 +13,7 @@ import { commonNavItems } from '../lib/navItems';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
       <NavBar items={commonNavItems} />
       <main>
         <HeroSection />
@@ -30,4 +30,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage; 
+export default HomePage;

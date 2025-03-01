@@ -92,10 +92,10 @@ export default function BlogIndex() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Our Blog
           </h1>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-500 dark:text-gray-300 max-w-3xl mx-auto">
             Stay updated with our latest articles, news, and insights on cybersecurity.
           </p>
         </div>
@@ -103,13 +103,13 @@ export default function BlogIndex() {
         {/* Categories Section */}
         {categories.length > 0 && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Categories</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Categories</h2>
             <div className="flex flex-wrap gap-3 justify-center">
               {categories.map((category) => (
                 <Link
                   key={category.id}
                   to={`/category/${category.slug}`}
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-[#f28749] hover:text-white transition-colors"
+                  className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-[#f28749] hover:text-white transition-colors"
                 >
                   {category.name}
                 </Link>
@@ -121,8 +121,8 @@ export default function BlogIndex() {
         {/* Blog Posts Section */}
         {posts.length === 0 ? (
           <div className="text-center py-12">
-            <h2 className="text-xl font-medium text-gray-900 mb-2">No posts found</h2>
-            <p className="text-gray-500">
+            <h2 className="text-xl font-medium text-gray-900 dark:text-white mb-2">No posts found</h2>
+            <p className="text-gray-500 dark:text-gray-400">
               No blog posts have been published yet. Check back soon!
             </p>
           </div>
@@ -130,7 +130,7 @@ export default function BlogIndex() {
           <>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {displayedPosts.map((post) => (
-                <article key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+                <article key={post.id} className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden flex flex-col h-full border border-transparent dark:border-gray-600">
                   {post.featuredImage && (
                     <Link to={`/blog/${post.slug}`} className="block h-48 overflow-hidden">
                       <img
@@ -143,13 +143,13 @@ export default function BlogIndex() {
                   
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex-1">
-                      <h2 className="text-xl font-bold text-gray-900 mb-2">
+                      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749]">
                           {post.title}
                         </Link>
                       </h2>
                       
-                      <div className="flex flex-wrap items-center text-sm text-gray-500 mb-4">
+                      <div className="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-300 mb-4">
                         <div className="flex items-center mr-4 mb-2">
                           <Calendar className="h-4 w-4 mr-1" />
                           <time dateTime={new Date(post.createdAt).toISOString()}>
@@ -171,7 +171,7 @@ export default function BlogIndex() {
                                 </Link>
                               ))}
                               {post.categories.length > 1 && (
-                                <span className="text-gray-400">
+                                <span className="text-gray-400 dark:text-gray-300">
                                   {` +${post.categories.length - 1}`}
                                 </span>
                               )}
@@ -180,7 +180,7 @@ export default function BlogIndex() {
                         )}
                       </div>
                       
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-gray-600 dark:text-gray-200 mb-4">
                         {truncateText(extractTextFromHtml(post.content), 150)}
                       </p>
                     </div>

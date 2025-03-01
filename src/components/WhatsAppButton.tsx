@@ -61,7 +61,7 @@ const WhatsAppButton = () => {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`relative flex items-center bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#128C7E] transition-all duration-500 ease-in-out ${isExpanded ? 'px-5 py-3' : 'w-12 h-12 justify-center'}`}
+        className={`relative flex items-center bg-[#25D366] text-white rounded-full shadow-lg dark:shadow-emerald-700/20 hover:bg-[#128C7E] transition-all duration-500 ease-in-out ${isExpanded ? 'px-5 py-3' : 'w-12 h-12 justify-center'}`}
         aria-label="Contact us on WhatsApp"
       >
         <div className="flex-shrink-0">

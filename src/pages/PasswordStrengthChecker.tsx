@@ -47,114 +47,158 @@ const PasswordStrengthChecker = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f2f2f2]">
+    <div className="min-h-screen flex flex-col bg-[#f2f2f2] dark:bg-gray-900">
       <NavBar items={commonNavItems} />
       
-      <main className="flex-grow container mx-auto px-4 py-12 mt-20">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8"
-        >
-          <h1 className="text-3xl font-bold text-center mb-2">Is Your Password Strong Enough?</h1>
-          <h2 className="text-xl text-center text-gray-600 mb-8">Take the Password Test</h2>
-          
-          <div className="mb-6">
-            <p className="text-sm text-gray-600 mb-4">
-              <strong>Tip:</strong> Avoid the use of dictionary words or common names, and avoid using any personal information
-            </p>
-            
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Type a password"
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={showPassword}
-                    onChange={() => setShowPassword(!showPassword)}
-                    className="sr-only"
-                  />
-                  <span className="text-sm text-gray-600 mr-2">Show password:</span>
-                  <div className={`w-10 h-5 bg-gray-200 rounded-full p-1 transition ${showPassword ? 'bg-blue-500' : ''}`}>
-                    <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition ${showPassword ? 'translate-x-5' : ''}`}></div>
+      <main className="flex-grow pt-20 pb-16">
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Password Strength Checker</h1>
+                <p className="text-gray-600 dark:text-gray-300 mb-8">
+                  Check how strong your password is and how long it would take to crack.
+                </p>
+                
+                {/* Password Input */}
+                <div className="mb-8">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Enter Your Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#f28749] focus:border-[#f28749]"
+                      placeholder="Type your password here..."
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                      {showPassword ? "Hide" : "Show"}
+                    </button>
                   </div>
-                </label>
+                </div>
+                
+                {/* Strength Meter */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Password Strength</h2>
+                  
+                  <div className="mb-4">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Strength:</span>
+                      <span className={`text-sm font-medium text-${getStrengthColor(
+                        strength.length,
+                        strength.hasSymbols,
+                        strength.hasNumbers,
+                        strength.hasUpperCase,
+                        strength.hasLowerCase
+                      )}`}>
+                        {getStrengthText(
+                          strength.length,
+                          strength.hasSymbols,
+                          strength.hasNumbers,
+                          strength.hasUpperCase,
+                          strength.hasLowerCase
+                        )}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                      <div 
+                        className={`bg-${getStrengthColor(
+                          strength.length,
+                          strength.hasSymbols,
+                          strength.hasNumbers,
+                          strength.hasUpperCase,
+                          strength.hasLowerCase
+                        )} h-2.5 rounded-full`} 
+                        style={{ 
+                          width: `${Math.min(100, (password.length / 16) * 100)}%`,
+                          backgroundColor: password.length > 0 ? `var(--${getStrengthColor(
+                            strength.length,
+                            strength.hasSymbols,
+                            strength.hasNumbers,
+                            strength.hasUpperCase,
+                            strength.hasLowerCase
+                          )})` : ''
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                      <strong>Estimated time to crack:</strong> {strength.crackTime}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      This is an estimate based on a brute force attack scenario.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Password Requirements */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Password Requirements</h2>
+                  
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <span className={`inline-block w-5 h-5 rounded-full mr-3 ${strength.length >= 8 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        At least 8 characters {strength.length >= 8 && '✓'}
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className={`inline-block w-5 h-5 rounded-full mr-3 ${strength.hasUpperCase ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Contains uppercase letters {strength.hasUpperCase && '✓'}
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className={`inline-block w-5 h-5 rounded-full mr-3 ${strength.hasLowerCase ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Contains lowercase letters {strength.hasLowerCase && '✓'}
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className={`inline-block w-5 h-5 rounded-full mr-3 ${strength.hasNumbers ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Contains numbers {strength.hasNumbers && '✓'}
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className={`inline-block w-5 h-5 rounded-full mr-3 ${strength.hasSymbols ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Contains symbols {strength.hasSymbols && '✓'}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                
+                {/* Password Tips */}
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <h3 className="text-lg font-medium text-blue-800 dark:text-blue-300 mb-2">Password Security Tips</h3>
+                  <ul className="list-disc pl-5 text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                    <li>Use a different password for each account</li>
+                    <li>Longer passwords (12+ characters) are more secure</li>
+                    <li>Include a mix of letters, numbers, and symbols</li>
+                    <li>Avoid using personal information in your passwords</li>
+                    <li>Consider using a password manager to store your passwords securely</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            
-            <div className="mt-4">
-              <div className="flex justify-between mb-2">
-                <span className="text-sm font-medium">
-                  {getStrengthText(
-                    strength.length,
-                    strength.hasSymbols,
-                    strength.hasNumbers,
-                    strength.hasUpperCase,
-                    strength.hasLowerCase
-                  )}
-                </span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2.5">
-                <div 
-                  className={`h-2.5 rounded-full ${getStrengthColor(
-                    strength.length,
-                    strength.hasSymbols,
-                    strength.hasNumbers,
-                    strength.hasUpperCase,
-                    strength.hasLowerCase
-                  )}`} 
-                  style={{ width: `${Math.min(100, (strength.length / 20) * 100)}%` }}
-                ></div>
-              </div>
-            </div>
+            </motion.div>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className={`p-4 rounded-lg ${strength.hasSymbols ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}`}>
-              <div className="font-medium">Symbols</div>
-              <div className="text-xs">{strength.hasSymbols ? 'Yes' : 'No'}</div>
-            </div>
-            <div className={`p-4 rounded-lg ${strength.hasNumbers ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}`}>
-              <div className="font-medium">Numbers</div>
-              <div className="text-xs">{strength.hasNumbers ? 'Yes' : 'No'}</div>
-            </div>
-            <div className={`p-4 rounded-lg ${strength.hasUpperCase ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}`}>
-              <div className="font-medium">Upper case</div>
-              <div className="text-xs">{strength.hasUpperCase ? 'Yes' : 'No'}</div>
-            </div>
-            <div className={`p-4 rounded-lg ${strength.hasLowerCase ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}`}>
-              <div className="font-medium">Lower case</div>
-              <div className="text-xs">{strength.hasLowerCase ? 'Yes' : 'No'}</div>
-            </div>
-          </div>
-          
-          <div className="mb-8">
-            <p className="text-sm text-gray-600 mb-2">
-              {strength.length} characters containing:
-            </p>
-            <p className="text-lg font-medium">
-              Time to crack your password:
-            </p>
-            <p className="text-xl font-bold text-blue-600">
-              {strength.crackTime}
-            </p>
-          </div>
-          
-          <div className="text-center mt-8">
-            <a href="/password-generator" className="text-blue-500 hover:underline">
-              Need a stronger password? Try our Password Generator →
-            </a>
-          </div>
-        </motion.div>
+        </div>
       </main>
-
+      
       <Footer />
     </div>
   );

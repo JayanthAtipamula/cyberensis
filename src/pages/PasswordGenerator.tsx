@@ -47,148 +47,159 @@ const PasswordGenerator = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f2f2f2]">
+    <div className="min-h-screen flex flex-col bg-[#f2f2f2] dark:bg-gray-900">
       <NavBar items={commonNavItems} />
       
-      <main className="flex-grow container mx-auto px-4 py-12 mt-20">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8"
-        >
-          <h1 className="text-3xl font-bold text-center mb-2">Random Strong Password Generator</h1>
-          
-          <div className="mt-8 mb-6">
-            <div className="relative">
-              <input
-                type="text"
-                value={password}
-                readOnly
-                className="w-full p-4 pr-24 text-lg font-mono bg-gray-50 border border-gray-300 rounded-md focus:outline-none"
-              />
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex space-x-2">
-                <button
-                  onClick={copyToClipboard}
-                  className="p-2 text-gray-600 hover:text-blue-600 focus:outline-none"
-                  title="Copy to clipboard"
-                >
-                  {copied ? <Check size={20} className="text-green-500" /> : <Copy size={20} />}
-                </button>
+      <main className="flex-grow pt-20 pb-16">
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Password Generator</h1>
+                <p className="text-gray-600 dark:text-gray-300 mb-8">
+                  Create strong, secure passwords to keep your accounts safe.
+                </p>
+                
+                {/* Password Display */}
+                <div className="mb-8">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Your Generated Password
+                  </label>
+                  <div className="flex">
+                    <div className="flex-grow relative">
+                      <input
+                        type="text"
+                        readOnly
+                        value={password}
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-l-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-lg focus:ring-[#f28749] focus:border-[#f28749]"
+                      />
+                    </div>
+                    <button
+                      onClick={copyToClipboard}
+                      className="px-4 py-3 bg-[#f28749] text-white rounded-r-lg hover:bg-[#e07339] transition-colors"
+                      aria-label="Copy password to clipboard"
+                    >
+                      {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Password Options */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Password Options</h2>
+                  
+                  {/* Length Slider */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Password Length: {options.length}
+                    </label>
+                    <input
+                      type="range"
+                      name="length"
+                      min="8"
+                      max="64"
+                      value={options.length}
+                      onChange={handleOptionChange}
+                      className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#f28749]"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <span>8</span>
+                      <span>36</span>
+                      <span>64</span>
+                    </div>
+                  </div>
+                  
+                  {/* Character Options */}
+                  <div className="space-y-3">
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="includeUppercase"
+                        name="includeUppercase"
+                        checked={options.includeUppercase}
+                        onChange={handleOptionChange}
+                        className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 dark:border-gray-600 rounded"
+                      />
+                      <label htmlFor="includeUppercase" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                        Include Uppercase Letters (A-Z)
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="includeLowercase"
+                        name="includeLowercase"
+                        checked={options.includeLowercase}
+                        onChange={handleOptionChange}
+                        className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 dark:border-gray-600 rounded"
+                      />
+                      <label htmlFor="includeLowercase" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                        Include Lowercase Letters (a-z)
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="includeNumbers"
+                        name="includeNumbers"
+                        checked={options.includeNumbers}
+                        onChange={handleOptionChange}
+                        className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 dark:border-gray-600 rounded"
+                      />
+                      <label htmlFor="includeNumbers" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                        Include Numbers (0-9)
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="includeSymbols"
+                        name="includeSymbols"
+                        checked={options.includeSymbols}
+                        onChange={handleOptionChange}
+                        className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 dark:border-gray-600 rounded"
+                      />
+                      <label htmlFor="includeSymbols" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                        Include Symbols (!@#$%^&*)
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Generate Button */}
                 <button
                   onClick={handleGeneratePassword}
-                  className="p-2 text-gray-600 hover:text-blue-600 focus:outline-none"
-                  title="Generate new password"
+                  className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#f28749] hover:bg-[#e07339] transition-colors"
                 >
-                  <RefreshCw size={20} />
+                  <RefreshCw className="h-5 w-5 mr-2" />
+                  Generate New Password
                 </button>
+                
+                {/* Password Tips */}
+                <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <h3 className="text-lg font-medium text-blue-800 dark:text-blue-300 mb-2">Password Security Tips</h3>
+                  <ul className="list-disc pl-5 text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                    <li>Use a different password for each account</li>
+                    <li>Longer passwords (12+ characters) are more secure</li>
+                    <li>Include a mix of letters, numbers, and symbols</li>
+                    <li>Avoid using personal information in your passwords</li>
+                    <li>Consider using a password manager to store your passwords securely</li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-          
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password Length: {options.length}
-              </label>
-              <input
-                type="range"
-                name="length"
-                min="8"
-                max="32"
-                value={options.length}
-                onChange={handleOptionChange}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>8</span>
-                <span>16</span>
-                <span>24</span>
-                <span>32</span>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="includeUppercase"
-                  name="includeUppercase"
-                  checked={options.includeUppercase}
-                  onChange={handleOptionChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="includeUppercase" className="ml-2 block text-sm text-gray-700">
-                  Include Uppercase Letters (A-Z)
-                </label>
-              </div>
-              
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="includeLowercase"
-                  name="includeLowercase"
-                  checked={options.includeLowercase}
-                  onChange={handleOptionChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="includeLowercase" className="ml-2 block text-sm text-gray-700">
-                  Include Lowercase Letters (a-z)
-                </label>
-              </div>
-              
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="includeNumbers"
-                  name="includeNumbers"
-                  checked={options.includeNumbers}
-                  onChange={handleOptionChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="includeNumbers" className="ml-2 block text-sm text-gray-700">
-                  Include Numbers (0-9)
-                </label>
-              </div>
-              
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="includeSymbols"
-                  name="includeSymbols"
-                  checked={options.includeSymbols}
-                  onChange={handleOptionChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="includeSymbols" className="ml-2 block text-sm text-gray-700">
-                  Include Symbols (!@#$%^&*)
-                </label>
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <button
-                onClick={handleGeneratePassword}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-200 flex items-center justify-center"
-              >
-                <RefreshCw size={18} className="mr-2" />
-                Generate Password
-              </button>
-            </div>
-          </div>
-          
-          <div className="mt-8 text-center text-sm text-gray-500">
-            <p>Disclaimer: The generated password is not stored or transmitted anywhere. Please save it securely.</p>
-          </div>
-          
-          <div className="text-center mt-8">
-            <a href="/password-strength-checker" className="text-blue-500 hover:underline">
-              Check your password strength →
-            </a>
-          </div>
-        </motion.div>
+        </div>
       </main>
-
+      
       <Footer />
     </div>
   );

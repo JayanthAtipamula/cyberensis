@@ -4,6 +4,7 @@ import React, { useEffect, useState, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon, Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "../../lib/utils"
+import { ThemeToggle } from "./ThemeToggle"
 
 interface NavItem {
   name: string
@@ -110,7 +111,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
     <>
       <div
         className={cn(
-          "fixed top-0 left-0 right-0 z-[100] bg-gradient-to-b from-white/40 to-white/30 backdrop-blur-xl",
+          "fixed top-0 left-0 right-0 z-[100] bg-gradient-to-b from-white/40 to-white/30 backdrop-blur-xl dark:from-gray-900/80 dark:to-gray-900/70",
           className,
         )}
       >
@@ -146,7 +147,8 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                           className={cn(
                             "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300 flex items-center",
                             "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
-                            isActive && "bg-white/50 text-[#f28749] shadow-sm",
+                            "dark:text-gray-200 dark:hover:text-[#f28749] dark:hover:bg-gray-800/50",
+                            isActive && "bg-white/50 text-[#f28749] shadow-sm dark:bg-gray-800/50",
                           )}
                         >
                           <span>{item.name}</span>
@@ -154,7 +156,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                           {isActive && (
                             <motion.div
                               layoutId="lamp"
-                              className="absolute inset-0 w-full bg-[#f28749]/5 rounded-full -z-10"
+                              className="absolute inset-0 w-full bg-[#f28749]/5 dark:bg-[#f28749]/10 rounded-full -z-10"
                               initial={false}
                               transition={{
                                 type: "spring",
@@ -179,7 +181,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
                               transition={{ duration: 0.2 }}
-                              className="absolute mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden z-20"
+                              className="absolute mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-20"
                             >
                               <div className="py-2">
                                 {item.children?.map((child) => {
@@ -192,7 +194,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                                         setActiveTab(child.name)
                                         setOpenDropdown(null)
                                       }}
-                                      className="flex items-center px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-[#f28749]"
+                                      className="flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-[#f28749] dark:hover:text-[#f28749]"
                                     >
                                       <ChildIcon size={18} className="mr-2" />
                                       <span>{child.name}</span>
@@ -211,14 +213,15 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                         className={cn(
                           "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
                           "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
-                          isActive && "bg-white/50 text-[#f28749] shadow-sm",
+                          "dark:text-gray-200 dark:hover:text-[#f28749] dark:hover:bg-gray-800/50",
+                          isActive && "bg-white/50 text-[#f28749] shadow-sm dark:bg-gray-800/50",
                         )}
                       >
                         <span>{item.name}</span>
                         {isActive && (
                           <motion.div
                             layoutId="lamp"
-                            className="absolute inset-0 w-full bg-[#f28749]/5 rounded-full -z-10"
+                            className="absolute inset-0 w-full bg-[#f28749]/5 dark:bg-[#f28749]/10 rounded-full -z-10"
                             initial={false}
                             transition={{
                               type: "spring",
@@ -240,10 +243,15 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
               })}
             </div>
 
+            {/* Theme Toggle */}
+            <div className="ml-auto md:ml-4">
+              <ThemeToggle />
+            </div>
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-[#f28749] transition-colors ml-auto hover:bg-white/50 rounded-full"
+              className="md:hidden p-2 text-gray-700 dark:text-gray-200 hover:text-[#f28749] dark:hover:text-[#f28749] transition-colors ml-4 hover:bg-white/50 dark:hover:bg-gray-800/50 rounded-full"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -258,10 +266,11 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-20 left-0 right-0 bg-gradient-to-b from-white/40 to-white/30 backdrop-blur-xl z-[90] md:hidden"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[99] pt-20 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-y-auto"
           >
-            <div className="container mx-auto px-8 md:px-12 lg:px-16 py-4">
-              <div className="flex flex-col gap-2">
+            <div className="container mx-auto px-8 py-6">
+              <div className="flex flex-col space-y-4">
                 {items.map((item) => {
                   const Icon = item.icon
                   const isActive = activeTab === item.name
@@ -269,56 +278,61 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                   const isDropdownOpen = openDropdown === item.name
 
                   return (
-                    <div key={item.name}>
+                    <div key={item.name} className="w-full">
                       {hasChildren ? (
-                        <>
+                        <div className="w-full">
                           <button
                             onClick={(e) => handleDropdownToggle(item.name, e)}
                             data-dropdown-toggle="true"
                             className={cn(
-                              "flex items-center justify-between w-full px-4 py-3 rounded-lg transition-all duration-300",
-                              "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
-                              isActive && "bg-white/50 text-[#f28749] shadow-sm"
+                              "w-full flex items-center justify-between p-4 rounded-lg",
+                              "text-gray-700 dark:text-gray-200",
+                              isActive && "bg-white/50 dark:bg-gray-800/50 text-[#f28749]",
                             )}
                           >
-                            <div className="flex items-center gap-3">
-                              <Icon size={20} />
+                            <div className="flex items-center">
+                              <Icon size={20} className="mr-3" />
                               <span className="font-medium">{item.name}</span>
                             </div>
-                            <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown
+                              size={20}
+                              className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                            />
                           </button>
-                          
+
                           <AnimatePresence>
                             {isDropdownOpen && (
                               <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="overflow-hidden ml-4 pl-4 border-l border-gray-200"
+                                className="overflow-hidden"
                               >
-                                {item.children?.map((child) => {
-                                  const ChildIcon = child.icon
-                                  return (
-                                    <a
-                                      key={child.name}
-                                      href={child.url}
-                                      onClick={() => {
-                                        setActiveTab(child.name)
-                                        setIsMenuOpen(false)
-                                        setOpenDropdown(null)
-                                      }}
-                                      className="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 text-gray-700 hover:text-[#f28749] hover:bg-white/50"
-                                    >
-                                      <ChildIcon size={18} />
-                                      <span className="font-medium">{child.name}</span>
-                                    </a>
-                                  )
-                                })}
+                                <div className="pl-10 py-2 space-y-2">
+                                  {item.children?.map((child) => {
+                                    const ChildIcon = child.icon
+                                    return (
+                                      <a
+                                        key={child.name}
+                                        href={child.url}
+                                        onClick={() => {
+                                          setActiveTab(child.name)
+                                          setIsMenuOpen(false)
+                                          setOpenDropdown(null)
+                                        }}
+                                        className="flex items-center p-3 rounded-lg text-gray-600 dark:text-gray-300 hover:text-[#f28749] dark:hover:text-[#f28749]"
+                                      >
+                                        <ChildIcon size={18} className="mr-3" />
+                                        <span>{child.name}</span>
+                                      </a>
+                                    )
+                                  })}
+                                </div>
                               </motion.div>
                             )}
                           </AnimatePresence>
-                        </>
+                        </div>
                       ) : (
                         <a
                           href={item.url}
@@ -327,12 +341,12 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                             setIsMenuOpen(false)
                           }}
                           className={cn(
-                            "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300",
-                            "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
-                            isActive && "bg-white/50 text-[#f28749] shadow-sm"
+                            "flex items-center p-4 rounded-lg",
+                            "text-gray-700 dark:text-gray-200",
+                            isActive && "bg-white/50 dark:bg-gray-800/50 text-[#f28749]",
                           )}
                         >
-                          <Icon size={20} />
+                          <Icon size={20} className="mr-3" />
                           <span className="font-medium">{item.name}</span>
                         </a>
                       )}

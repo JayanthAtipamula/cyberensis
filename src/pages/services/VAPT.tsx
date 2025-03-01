@@ -7,7 +7,7 @@ import { commonNavItems } from '../../lib/navItems';
 
 const VAPTPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
@@ -22,12 +22,12 @@ const VAPTPage = () => {
 
 const ServiceHero = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="flex flex-col items-center">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Vulnerability Assessment & Penetration Testing (VAPT)</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">Vulnerability Assessment & Penetration Testing (VAPT)</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Comprehensive security assessment to identify and exploit vulnerabilities in your systems before attackers do.
             </p>
           </div>
@@ -46,53 +46,33 @@ const ServiceHero = () => {
 
 const ServiceDetails = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">What is VAPT?</h2>
+          <div className="flex items-center mb-8">
+            <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-full mr-4">
+              <Shield className="h-8 w-8 text-[#f28749]" />
+            </div>
+            <h2 className="text-3xl font-bold dark:text-white">What is VAPT?</h2>
+          </div>
           
-          <div className="prose prose-lg max-w-none">
-            <p className="mb-6">
-              Vulnerability Assessment and Penetration Testing (VAPT) is a combined process of Security services Vulnerability Assessment (VA) which will guide your organization to find vulnerabilities and Penetration Testing (PT) will assist your resource to measure the security Levels. Fundamentally, Vulnerability Assessment and Penetration Testing (VAPT) will raise security alarms before existed flaws being exploited by attackers.
+          <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
+            <p>
+              Vulnerability Assessment and Penetration Testing (VAPT) is a comprehensive security testing approach that combines two complementary techniques:
             </p>
             
-            <h3 className="text-2xl font-semibold mt-10 mb-4">VAPT Services</h3>
-            <p className="mb-6">
-              In recent times, Vulnerability Assessment and Penetration Testing (VAPT) services is a matter of niche for any organization related to information technology. Vulnerability Assessment and Penetration Testing (VAPT) services will identify potential risk to your organizational Network/infrastructure, Web applications, Mobile applications, Cloud services and other internal and external resources. Vulnerability Assessment and Penetration Testing (VAPT) services include Security Audits, providing endorsements for security disruption, monitoring security and risk assessment.
+            <ul className="mt-4 space-y-2">
+              <li>
+                <strong className="text-gray-900 dark:text-white">Vulnerability Assessment:</strong> A systematic review of security weaknesses in an information system. It evaluates if the system is susceptible to any known vulnerabilities, assigns severity levels to those vulnerabilities, and recommends remediation or mitigation where needed.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Penetration Testing:</strong> An authorized simulated attack on a computer system, performed to evaluate the security of the system. The test is performed to identify both weaknesses (vulnerabilities) and strengths, to determine whether unauthorized access or other malicious activity is possible.
+              </li>
+            </ul>
+            
+            <p className="mt-6">
+              Together, these methodologies provide a comprehensive view of your organization's security posture, identifying vulnerabilities and demonstrating the impact of successful exploits on your business.
             </p>
-            
-            <h3 className="text-2xl font-semibold mt-10 mb-4">How VAPT Will Help Your Organization?</h3>
-            <p className="mb-6">
-              As we know cyberattacks are growing in the Digital world, hackers will always be in search of victims, to steal and misuse their information. As an Organization, you will have a network, Confidential information, Commercial information and other resources. Thus, The prime motto of VAPT is to deliberately secure such Confidential and Esteemed information of the organization.
-            </p>
-            
-            <div className="bg-white p-8 rounded-xl shadow-sm my-10">
-              <h3 className="text-2xl font-semibold mb-4">Are they Secure Enough?</h3>
-              <p className="text-xl font-medium text-[#f28749] mb-4">Prevention is Better than the cure...</p>
-              <p>Vulnerability Assessment and Penetration Testing (VAPT) will assist you in getting rid of these Questions.</p>
-              <p className="mt-4">
-                Vulnerability Assessment (VA) is carried to find out the list of vulnerabilities and Prioritize them in your network, applications and other resources. Penetration Testing (PT) is more comprehensive and intrusive than a Vulnerability Assessment (VA) and is designed to enact a specific hacking situation. Penetration Testing (PT) will analyse and inform you about the risk from an attack that could compromise critical assets or information.
-              </p>
-            </div>
-            
-            <h3 className="text-2xl font-semibold mt-10 mb-4">Types of VAPT that we perform</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">Black Box Testing</h4>
-                <p>Black box tester tries to invade into a company's system with zero knowledge of infrastructure, applications and other resources involved in the organization.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">White Box Testing</h4>
-                <p>White box tester will accomplish Vulnerability Assessment and Penetration Testing (VAPT) from inside the internal network of the company itself and tester will have the complete knowledge of the network infrastructure.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h4 className="text-xl font-semibold mb-3">Gray Box Testing</h4>
-                <p>Gray box tester will have basic knowledge about organization's internal and external networks. We could say that this is a combination of both Black box and White Box testing.</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -102,22 +82,23 @@ const ServiceDetails = () => {
 
 const ServiceBenefits = () => {
   const benefits = [
-    "Enhances Network security posture",
-    "Keeps your information secure, without any Loss, Misuse, unauthorized access and alteration",
-    "Protection of the Confidentiality, integrity, and Availability (CIA) of data",
-    "Prevention of reputational damage to an organization",
-    "Comprehensive application evaluation",
-    "Analyses the threats of Network infrastructures",
-    "Internal flaws can be spotted very easily but external flaws are very hard to find; VAPT services enables to focus on mitigating critical vulnerabilities."
+    "Identify security vulnerabilities before attackers do",
+    "Understand the real-world impact of vulnerabilities through simulated attacks",
+    "Receive detailed remediation guidance from security experts",
+    "Prioritize security fixes based on risk severity",
+    "Meet compliance requirements for regular security testing",
+    "Improve your overall security posture",
+    "Protect sensitive data from unauthorized access",
+    "Reduce the risk of security breaches and associated costs"
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Benefits of VAPT</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Benefits of Our VAPT Services</h2>
           
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
               <motion.div 
                 key={index}
@@ -127,34 +108,10 @@ const ServiceBenefits = () => {
                 viewport={{ once: true }}
                 className="flex items-start"
               >
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p className="text-lg">{benefit}</p>
+                <CheckCircle className="h-6 w-6 text-[#f28749] flex-shrink-0 mt-1 mr-3" />
+                <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="mt-12">
-            <h3 className="text-2xl font-semibold mb-6">VAPT Services For</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <h4 className="text-xl font-semibold mb-3">Web Application Penetration Testing</h4>
-                <p className="mb-4">We use manual and Automated penetration testing While searching for vulnerabilities in web applications.</p>
-                <a href="/services/wapt" className="text-[#f28749] font-medium hover:underline">Learn more →</a>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <h4 className="text-xl font-semibold mb-3">Mobile Application Penetration Testing</h4>
-                <p className="mb-4">We use multiple testing methodologies to analyse the weakness in Android and iOS mobile applications.</p>
-                <a href="/services/mapt" className="text-[#f28749] font-medium hover:underline">Learn more →</a>
-              </div>
-              
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <h4 className="text-xl font-semibold mb-3">Network/Infrastructure Penetration Testing</h4>
-                <p className="mb-4">Identify exploitable vulnerabilities which may lead an attacker to exploit before the attacker finds them.</p>
-                <a href="/services/nipt" className="text-[#f28749] font-medium hover:underline">Learn more →</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -164,19 +121,31 @@ const ServiceBenefits = () => {
 
 const WhyChooseUs = () => {
   const reasons = [
-    "Our Highly qualified Ethical/White Hackers will understand your organization's resources and the requirement of the security to perform the Vulnerability Assessment and Penetration Testing.",
-    "Self-designed area of Scope for testing vulnerabilities based on the architecture of the environment.",
-    "Cyberensis will highly focus on Manual testing rather than using automated tools for Vulnerability Assessment and Penetration Testing (VAPT)",
-    "Particularized report on actual findings rather than showing probability on vulnerabilities along with POC included."
+    {
+      title: "Expert Security Team",
+      description: "Our team consists of certified security professionals with years of experience in identifying and exploiting vulnerabilities across various platforms and technologies."
+    },
+    {
+      title: "Comprehensive Methodology",
+      description: "We follow a structured, thorough approach that combines automated scanning with manual testing to ensure no vulnerability goes undetected."
+    },
+    {
+      title: "Clear, Actionable Reports",
+      description: "Our reports provide detailed findings with severity ratings, proof of concepts, and specific remediation guidance that your technical team can implement."
+    },
+    {
+      title: "Continuous Support",
+      description: "We don't just identify issues and leave. Our team provides ongoing support to help you understand and address the vulnerabilities we find."
+    }
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Why Choose Cyberensis for VAPT</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Why Choose Our VAPT Services</h2>
           
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {reasons.map((reason, index) => (
               <motion.div 
                 key={index}
@@ -184,25 +153,12 @@ const WhyChooseUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-xl shadow-sm"
+                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm"
               >
-                <div className="flex items-start">
-                  <div className="bg-[#f28749] bg-opacity-10 p-2 rounded-lg mr-4 mt-1">
-                    <Shield className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <p className="text-lg">{reason}</p>
-                </div>
+                <h3 className="text-xl font-semibold mb-3 dark:text-white">{reason.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{reason.description}</p>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <a 
-              href="/contact" 
-              className="inline-block bg-[#f28749] text-white font-medium px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
-            >
-              Contact Us for VAPT Services
-            </a>
           </div>
         </div>
       </div>

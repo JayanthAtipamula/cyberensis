@@ -22,9 +22,9 @@ const BrandTrust: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white dark:bg-gray-900">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white">
           Trusted by <span className="text-orange-500">Leading Brands</span>
         </h2>
       </div>
@@ -38,7 +38,7 @@ const BrandTrust: React.FC = () => {
                   key={`${brand.name}-${slideIndex}-${idx}`} 
                   className="mx-4 md:mx-12 min-w-[120px] md:min-w-[160px]"
                 >
-                  <div className="h-12 md:h-16 relative grayscale hover:grayscale-0 transition-all duration-300">
+                  <div className="h-12 md:h-16 relative grayscale hover:grayscale-0 transition-all duration-300 dark:brightness-90 dark:hover:brightness-100">
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}

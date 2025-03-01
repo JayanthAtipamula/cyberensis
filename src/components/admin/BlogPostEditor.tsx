@@ -155,23 +155,6 @@ export default function BlogPostEditor({ initialData, onSubmit, isSubmitting }: 
     };
   }, []);
 
-  const modules = {
-    toolbar: {
-      container: [
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'indent': '-1' }, { 'indent': '+1' }],
-        ['link', 'image'],
-        [{ 'align': [] }],
-        ['clean']
-      ],
-      handlers: {
-        image: imageHandler
-      }
-    }
-  };
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -181,22 +164,29 @@ export default function BlogPostEditor({ initialData, onSubmit, isSubmitting }: 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-4">
         {/* Title */}
         <div>
           <label htmlFor="title" className="block text-sm font-medium text-gray-700">
             Title
           </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            placeholder="Post title"
-          />
+          <div className="mt-1">
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                if (!slugEdited) {
+                  setSlug(slugify(e.target.value, { lower: true, strict: true }));
+                }
+              }}
+              required
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="Post title"
+            />
+          </div>
         </div>
 
         {/* Slug */}
@@ -248,17 +238,18 @@ export default function BlogPostEditor({ initialData, onSubmit, isSubmitting }: 
                     <Image className="mx-auto h-12 w-12 text-gray-400" />
                     <div className="text-sm text-gray-600">
                       <label
-                        htmlFor="featured-image"
-                        className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                        htmlFor="featured-image-upload"
+                        className="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2"
                       >
-                        <span>Upload image</span>
+                        <span>Upload an image</span>
                         <input
-                          id="featured-image"
-                          ref={featuredImageInputRef}
+                          id="featured-image-upload"
+                          name="featured-image-upload"
                           type="file"
                           accept="image/*"
                           className="sr-only"
                           onChange={handleFeaturedImageUpload}
+                          ref={featuredImageInputRef}
                         />
                       </label>
                     </div>
@@ -269,27 +260,38 @@ export default function BlogPostEditor({ initialData, onSubmit, isSubmitting }: 
           </div>
         </div>
 
-        {/* Content */}
+        {/* Content Editor */}
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
             Content
           </label>
-          <div className="mt-1">
-            <CustomQuillEditor
-              ref={quillRef}
-              theme="snow"
-              value={content}
-              onChange={setContent}
-              modules={modules}
-              className="h-64 sm:h-96"
-            />
-          </div>
+          <CustomQuillEditor
+            ref={quillRef}
+            value={content}
+            onChange={setContent}
+            modules={{
+              toolbar: {
+                container: [
+                  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                  ['bold', 'italic', 'underline', 'strike'],
+                  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                  [{ 'indent': '-1'}, { 'indent': '+1' }],
+                  ['link', 'image'],
+                  ['clean']
+                ],
+                handlers: {
+                  image: imageHandler
+                }
+              }
+            }}
+            className="h-64 sm:h-96"
+          />
         </div>
 
         {/* Meta Description */}
         <div>
           <label htmlFor="meta-description" className="block text-sm font-medium text-gray-700">
-            Meta Description (for SEO)
+            Meta Description
           </label>
           <div className="mt-1">
             <textarea
@@ -333,7 +335,9 @@ export default function BlogPostEditor({ initialData, onSubmit, isSubmitting }: 
                     <div
                       key={category.id}
                       className={`
-                        ${selectedCategories.includes(category.id) ? 'bg-indigo-50 text-indigo-900' : 'text-gray-900'}
+                        ${selectedCategories.includes(category.id) 
+                          ? 'bg-indigo-50 text-indigo-900' 
+                          : 'text-gray-900'}
                         cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100
                       `}
                       onClick={() => handleCategoryToggle(category.id)}

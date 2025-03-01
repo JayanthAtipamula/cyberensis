@@ -37,66 +37,63 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-100">
+    <section id="testimonials" className="py-20 bg-gray-100 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 dark:text-white">What Our Clients Say</h2>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about our cybersecurity services.
           </p>
         </div>
         
         <div className="max-w-4xl mx-auto relative">
-          <div className="bg-white rounded-lg shadow-xl p-8 md:p-12">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-8 md:p-12">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+              <div className="md:w-1/3 flex flex-col items-center">
                 <img 
                   src={testimonials[currentIndex].image} 
-                  alt={testimonials[currentIndex].name} 
-                  className="w-24 h-24 rounded-full object-cover border-4 border-[#f28749]"
+                  alt={testimonials[currentIndex].name}
+                  className="w-24 h-24 rounded-full object-cover border-4 border-[#f28749]/20"
                 />
-              </div>
-              <div className="md:w-2/3 md:pl-8">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`h-5 w-5 ${i < testimonials[currentIndex].rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
-                    />
-                  ))}
+                <div className="mt-4 text-center">
+                  <h4 className="font-semibold text-lg dark:text-white">{testimonials[currentIndex].name}</h4>
+                  <p className="text-gray-600 dark:text-gray-400">{testimonials[currentIndex].company}</p>
+                  <div className="flex items-center justify-center mt-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`h-5 w-5 ${i < testimonials[currentIndex].rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300 dark:text-gray-600'}`} 
+                      />
+                    ))}
+                  </div>
                 </div>
-                <blockquote className="text-gray-700 italic mb-6">
-                  "{testimonials[currentIndex].quote}"
+              </div>
+              
+              <div className="md:w-2/3">
+                <blockquote className="text-lg italic text-gray-700 dark:text-gray-300 relative">
+                  <span className="text-6xl text-[#f28749]/20 absolute -top-6 -left-4">"</span>
+                  {testimonials[currentIndex].quote}
+                  <span className="text-6xl text-[#f28749]/20 absolute -bottom-10 right-0">"</span>
                 </blockquote>
-                <div>
-                  <div className="font-bold">{testimonials[currentIndex].name}</div>
-                  <div className="text-gray-600">{testimonials[currentIndex].company}</div>
-                </div>
               </div>
             </div>
-          </div>
-          
-          <div className="flex justify-center mt-8 space-x-4">
-            <button 
-              onClick={prevTestimonial}
-              className="bg-white p-3 rounded-full shadow-md hover:bg-[#f28749] hover:text-white transition-colors"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <div className="flex space-x-2 items-center">
-              {testimonials.map((_, index) => (
-                <span 
-                  key={index} 
-                  className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-[#f28749]' : 'bg-gray-300'}`}
-                ></span>
-              ))}
+            
+            <div className="flex justify-center mt-8 space-x-4">
+              <button 
+                onClick={prevTestimonial}
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#f28749]/10 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              </button>
+              <button 
+                onClick={nextTestimonial}
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#f28749]/10 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              </button>
             </div>
-            <button 
-              onClick={nextTestimonial}
-              className="bg-white p-3 rounded-full shadow-md hover:bg-[#f28749] hover:text-white transition-colors"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
           </div>
         </div>
       </div>

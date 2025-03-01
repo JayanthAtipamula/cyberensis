@@ -3,7 +3,7 @@ import { ArrowDownRight, Phone } from 'lucide-react';
 
 const PreFooterCTA = () => {
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Background dots decoration */}
       <div className="absolute left-4 top-4 w-8 h-8 rounded-full bg-[#f28749] opacity-10"></div>
       
@@ -26,10 +26,10 @@ const PreFooterCTA = () => {
 
             {/* Text Content */}
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight dark:text-white">
                 Essential Cybersecurity Terms
               </h2>
-              <p className="text-xl md:text-2xl font-semibold mb-8">
+              <p className="text-xl md:text-2xl font-semibold mb-8 dark:text-gray-300">
                 Contact us for advanced cybersecurity solutions and expert risk management.
               </p>
               <a 

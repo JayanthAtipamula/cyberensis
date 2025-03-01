@@ -6,88 +6,74 @@ import { Helmet } from 'react-helmet-async';
 
 const CookiePolicy = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
       <Helmet>
         <title>Cookie Policy | Cyberensis Infosec</title>
-        <meta name="description" content="Cookie Policy for Cyberensis Infosec - Learn how we use cookies and similar technologies on our website." />
+        <meta name="description" content="Cookie Policy for Cyberensis Infosec - Learn about how we use cookies and similar technologies on our website." />
       </Helmet>
       
       <NavBar items={commonNavItems} />
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8 sm:p-12">
-            <h1 className="text-3xl font-bold mb-8 text-gray-900">Cookie Policy</h1>
+          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 sm:p-12">
+            <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Cookie Policy</h1>
             
-            <div className="prose prose-lg max-w-none text-gray-700">
+            <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
               <p className="mb-6">
                 Last updated: June 1, 2024
               </p>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">1. Introduction</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">1. Introduction</h2>
               <p className="mb-4">
                 This Cookie Policy explains how Cyberensis Infosec ("we", "us", or "our") uses cookies and similar technologies on our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.
               </p>
+              
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">2. What Are Cookies?</h2>
               <p className="mb-4">
-                By using or accessing our website, you agree to this Cookie Policy. This Policy may change from time to time, so please check back periodically.
+                Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
+              </p>
+              <p className="mb-4">
+                Cookies set by the website owner (in this case, Cyberensis Infosec) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics).
               </p>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">2. What Are Cookies?</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">3. Why Do We Use Cookies?</h2>
               <p className="mb-4">
-                Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the website owners.
-              </p>
-              <p className="mb-4">
-                Cookies allow a website to recognize your device and remember if you've been to the website before. They can be temporary (session cookies) which are deleted when you close your browser, or persistent (permanent cookies) which remain on your device for a longer period.
+                We use first-party and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our website to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies also enable us to track and target the interests of our users to enhance the experience on our website. Third parties serve cookies through our website for advertising, analytics, and other purposes.
               </p>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">3. Types of Cookies We Use</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">4. Types of Cookies We Use</h2>
               <p className="mb-4">
-                We use different types of cookies for various reasons:
+                The specific types of first and third-party cookies served through our website and the purposes they perform are described below:
               </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.</li>
-                <li><strong>Performance Cookies:</strong> These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us improve the way our website works.</li>
-                <li><strong>Functionality Cookies:</strong> These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages.</li>
-                <li><strong>Targeting Cookies:</strong> These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant advertisements on other sites.</li>
+              <ul className="list-disc pl-6 mb-4">
+                <li><strong>Essential Cookies:</strong> These cookies are strictly necessary to provide you with services available through our website and to use some of its features, such as access to secure areas.</li>
+                <li><strong>Performance and Functionality Cookies:</strong> These cookies are used to enhance the performance and functionality of our website but are non-essential to their use. However, without these cookies, certain functionality may become unavailable.</li>
+                <li><strong>Analytics and Customization Cookies:</strong> These cookies collect information that is used either in aggregate form to help us understand how our website is being used or how effective our marketing campaigns are, or to help us customize our website for you.</li>
+                <li><strong>Advertising Cookies:</strong> These cookies are used to make advertising messages more relevant to you. They perform functions like preventing the same ad from continuously reappearing, ensuring that ads are properly displayed for advertisers, and in some cases selecting advertisements that are based on your interests.</li>
               </ul>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">4. Third-Party Cookies</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">5. How Can You Control Cookies?</h2>
               <p className="mb-4">
-                In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the website, deliver advertisements on and through the website, and so on.
+                You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by clicking on the appropriate opt-out links provided in the cookie banner on our website.
+              </p>
+              <p className="mb-4">
+                You can also set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, you may still use our website though your access to some functionality and areas of our website may be restricted. As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser's help menu for more information.
               </p>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">5. How to Control Cookies</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">6. Changes to This Cookie Policy</h2>
               <p className="mb-4">
-                You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some services and functionalities may not work.
-              </p>
-              <p className="mb-4">
-                Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">www.aboutcookies.org</a> or <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">www.allaboutcookies.org</a>.
+                We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Please therefore re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
               </p>
               
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">6. Specific Browser Instructions</h2>
+              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">7. Contact Us</h2>
               <p className="mb-4">
-                To manage cookies through your browser settings, here are links to instructions for some popular browsers:
-              </p>
-              <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">Google Chrome</a></li>
-                <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">Mozilla Firefox</a></li>
-                <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">Safari</a></li>
-                <li><a href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank" rel="noopener noreferrer" className="text-[#f28749] hover:underline">Microsoft Edge</a></li>
-              </ul>
-              
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">7. Changes to This Cookie Policy</h2>
-              <p className="mb-4">
-                We may update our Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page and updating the "Last updated" date at the top of this policy.
-              </p>
-              
-              <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900">8. Contact Us</h2>
-              <p className="mb-4">
-                If you have any questions about our Cookie Policy, please contact us at:
+                If you have any questions about our use of cookies or other technologies, please contact us at:
               </p>
               <p className="mb-4">
-                <strong>Email:</strong> privacy@cyberensis.com<br />
-                <strong>Phone:</strong> +91 9853852852<br />
-                <strong>Address:</strong> Cyberensis Infosec, Cyber City
+                Email: privacy@cyberensis.com<br />
+                Phone: +91 98538 52852<br />
+                Address: Suite 304, 4th Floor, Surabhi Plaza, Lakdikapul, Hyderabad, Telangana 500004
               </p>
             </div>
           </div>

@@ -44,28 +44,35 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Our Services</h2>
-          <p className="text-gray-700 max-w-2xl mx-auto">
-            We provide total Cyber Security industry solutions to protect your business from evolving threats.
+          <h2 className="text-3xl font-bold mb-4 dark:text-white">Our Services</h2>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            We offer a comprehensive range of cybersecurity services to protect your business from evolving digital threats.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 max-w-7xl mx-auto">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Feature key={service.title} {...service} index={index} />
+            <Feature
+              key={index}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              index={index}
+              url={service.url}
+            />
           ))}
         </div>
-        
-        <div className="text-center mt-12">
+
+        <div className="text-center mt-16">
           <Link 
             to="/services" 
-            className="inline-flex items-center px-6 py-3 border border-[#f28749] text-base font-medium rounded-md text-[#f28749] bg-transparent hover:bg-[#fff8f4] transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-[#f28749] hover:bg-[#e07339] text-white px-6 py-3 rounded-lg transition-colors"
           >
             View All Services
-            <ArrowRight className="h-5 w-5 ml-2" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -87,41 +94,29 @@ const Feature = ({
   url: string;
 }) => {
   return (
-    <div
+    <Link 
+      to={url}
       className={cn(
-        "flex flex-col lg:border-r py-10 relative group/feature border-gray-200",
-        (index === 0 || index === 3) && "lg:border-l",
-        index < 3 && "lg:border-b"
+        "group flex flex-col h-full p-8 rounded-xl transition-all duration-300",
+        "bg-white dark:bg-gray-700 hover:bg-[#f28749]/5 dark:hover:bg-[#f28749]/10",
+        "border border-gray-100 dark:border-gray-600 hover:border-[#f28749]/20 dark:hover:border-[#f28749]/30",
+        "shadow-sm hover:shadow-md"
       )}
     >
-      {index < 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-gray-50 to-transparent pointer-events-none" />
-      )}
-      {index >= 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
-      )}
-      <div className="mb-6 relative z-10 px-10 text-[#f28749]">
-        {icon}
+      <div className="mb-5 p-3 rounded-full bg-[#f28749]/10 dark:bg-[#f28749]/20 w-fit">
+        <div className="text-[#f28749]">{icon}</div>
       </div>
-      <div className="text-xl font-semibold mb-3 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-gray-200 group-hover/feature:bg-[#f28749] transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-gray-900">
-          {title}
-        </span>
-      </div>
-      <p className="text-base text-gray-600 max-w-xs relative z-10 px-10 leading-relaxed mb-4">
+      <h3 className="text-xl font-semibold mb-3 group-hover:text-[#f28749] transition-colors dark:text-white">
+        {title}
+      </h3>
+      <p className="text-gray-600 dark:text-gray-200 mb-4 flex-grow">
         {description}
       </p>
-      <div className="px-10 mt-auto relative z-20">
-        <Link 
-          to={url} 
-          className="inline-flex items-center text-sm font-medium text-[#f28749] hover:text-[#e07642] transition-colors bg-white bg-opacity-80 py-1 px-2 rounded"
-        >
-          Read more
-          <ArrowRight className="h-4 w-4 ml-1" />
-        </Link>
+      <div className="flex items-center text-[#f28749] dark:text-[#ff9a5e] font-medium">
+        <span>Learn more</span>
+        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -3,16 +3,12 @@ import { NavBar } from '../../components/ui/tubelight-navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Cloud, CheckCircle } from 'lucide-react';
+import { commonNavItems } from '../../lib/navItems';
 
 const CPTPage = () => {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <NavBar items={[
-        { name: 'Home', url: '/', icon: Home },
-        { name: 'About', url: '/about', icon: User },
-        { name: 'Services', url: '/services', icon: Briefcase },
-        { name: 'Contact', url: '/contact', icon: FileText }
-      ]} />
+    <div className="min-h-screen bg-[#f2f2f2] dark:bg-gray-900">
+      <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
         <ServiceDetails />
@@ -27,19 +23,19 @@ const CPTPage = () => {
 
 const ServiceHero = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="flex flex-col items-center">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Cloud Penetration Testing (CPT)</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">Cloud Penetration Testing (CPT)</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Comprehensive security assessment of cloud environments to identify vulnerabilities and security misconfigurations.
             </p>
           </div>
           <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg">
             <img 
               src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-              alt="Cloud Penetration Testing Services" 
+              alt="Cloud Penetration Testing" 
               className="w-full h-auto"
             />
           </div>
@@ -51,37 +47,45 @@ const ServiceHero = () => {
 
 const ServiceDetails = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">What is Cloud Penetration Testing?</h2>
-          
-          <div className="prose prose-lg max-w-none">
-            <p className="mb-6">
-              Cloud is advanced Generation technology to utilize network resources and servers can access over the internet from anywhere. By using cloud environment, users and companies don't have to manage physical servers or run applications on their servers.
-            </p>
-            
-            <p className="mb-6">
-              Cloud Penetration Testing (CPT) aims to identify exploitable vulnerabilities in cloud environments. Cloud Penetration Testing (CPT) services can assess configuration, permissions models as well as hybrid and multi-cloud environment to regulate Avenues of attack, that are conceivable within your domain.
-            </p>
-            
-            <p className="mb-6">
-              It is a method of actively checking and examining the cloud systems by simulating the attack from the malicious attacks. Due to the impact of infrastructure, penetration testing is not allowed in Software as a Service Environment. Platform as a Service and Infrastructures as a Service are allowed for penetration testing.
-            </p>
-            
-            <p className="mb-6">
-              Usual cloud security monitoring should be implemented to the occurrence of threats, risks, and vulnerabilities.
-            </p>
-            
-            <div className="bg-white p-8 rounded-xl shadow-sm my-10">
-              <h3 className="text-2xl font-semibold mb-4">How Cloud Penetration Testing Will Help Your Organization</h3>
-              <p className="mt-4">
-                Cloud Technology is can be said in a simple way as digital transformation, which can help organizations to finest use of resources. Cloud environment must be protected with adequate security controls and policies as it contains highly classified and sensitive information.
-              </p>
-              <p className="mt-4">
-                Cloud Penetration Testing (CPT) will manage and achieve compliance with a Security risk. Increase threat detection protects data across its life cycle and allows security in DevOps. Minimize the costs instead of maintaining network resources.
-              </p>
+          <div className="flex items-center mb-8">
+            <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-full mr-4">
+              <Cloud className="h-8 w-8 text-[#f28749]" />
             </div>
+            <h2 className="text-3xl font-bold dark:text-white">What is Cloud Penetration Testing?</h2>
+          </div>
+          
+          <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
+            <p>
+              Cloud Penetration Testing (CPT) is a specialized security assessment that identifies and exploits vulnerabilities in cloud environments, including infrastructure, platforms, and applications. This proactive approach helps organizations secure their cloud deployments before malicious actors can discover and exploit weaknesses.
+            </p>
+            
+            <p className="mt-4">
+              Our Cloud Penetration Testing service examines various aspects of cloud environments, including:
+            </p>
+            
+            <ul className="mt-4 space-y-2">
+              <li>
+                <strong className="text-gray-900 dark:text-white">Cloud infrastructure security</strong> - Assessing the security of virtual machines, containers, storage, and networking components.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Identity and access management</strong> - Evaluating IAM configurations, roles, permissions, and authentication mechanisms.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Cloud service configurations</strong> - Identifying misconfigurations in cloud services that could lead to security vulnerabilities.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Data protection</strong> - Assessing data encryption, access controls, and backup mechanisms.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">API security</strong> - Testing the security of APIs used to manage and interact with cloud resources.
+              </li>
+              <li>
+                <strong className="text-gray-900 dark:text-white">Compliance validation</strong> - Verifying that cloud deployments meet relevant compliance requirements.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -137,21 +141,23 @@ const ServiceProcess = () => {
 
 const ServiceBenefits = () => {
   const benefits = [
-    "Protection of clouds sensitive data against hackers and cybercriminals",
-    "Detection of abnormal credential usage, misconfigurations etc.",
-    "Recovery and safety of data device is lost",
-    "Understanding the current cloud security measures",
-    "Safeguard critical cloud assets and data",
-    "Profitable effortlessly organized solution for monitoring and fluctuating"
+    "Identify security vulnerabilities in your cloud environments before attackers can exploit them",
+    "Evaluate the effectiveness of cloud security controls and configurations",
+    "Understand the potential impact of successful attacks on your cloud resources",
+    "Receive detailed remediation guidance specific to your cloud provider and services",
+    "Meet compliance requirements for cloud security testing",
+    "Reduce the risk of data breaches and associated costs",
+    "Gain insights into potential attack paths through your cloud environment",
+    "Improve your overall cloud security posture and resilience"
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Benefits of Cloud Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Benefits of Our Cloud Penetration Testing</h2>
           
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
               <motion.div 
                 key={index}
@@ -161,8 +167,8 @@ const ServiceBenefits = () => {
                 viewport={{ once: true }}
                 className="flex items-start"
               >
-                <CheckCircle className="h-6 w-6 text-[#f28749] mr-3 flex-shrink-0 mt-1" />
-                <p className="text-lg">{benefit}</p>
+                <CheckCircle className="h-6 w-6 text-[#f28749] flex-shrink-0 mt-1 mr-3" />
+                <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
               </motion.div>
             ))}
           </div>
@@ -174,19 +180,31 @@ const ServiceBenefits = () => {
 
 const WhyChooseUs = () => {
   const reasons = [
-    "Cyberensis experts will design a secure architecture of testing methodology to support defence across multi-cloud situations",
-    "Our experts will test guard rails, security, privacy compliance and requirement along with test automation and fixes",
-    "We also focus on monitoring and response using self-build technologies and controls",
-    "We frame the cloud security testing approach for cloud assets"
+    {
+      title: "Cloud Security Specialists",
+      description: "Our team includes experts in AWS, Azure, and Google Cloud security who understand the unique vulnerabilities and attack vectors specific to cloud environments."
+    },
+    {
+      title: "Multi-Cloud Expertise",
+      description: "We have deep knowledge of multiple cloud platforms, allowing us to identify platform-specific vulnerabilities and security best practices."
+    },
+    {
+      title: "Comprehensive Testing Methodology",
+      description: "Our approach combines automated scanning with manual testing to ensure thorough coverage of all potential security issues in your cloud deployments."
+    },
+    {
+      title: "Actionable Reporting",
+      description: "We provide clear, detailed reports with specific remediation guidance tailored to your cloud environment and services."
+    }
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Why Choose Cyberensis for Cloud Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Why Choose Our Cloud Penetration Testing</h2>
           
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {reasons.map((reason, index) => (
               <motion.div 
                 key={index}
@@ -194,25 +212,12 @@ const WhyChooseUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-6 rounded-xl shadow-sm"
+                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm"
               >
-                <div className="flex items-start">
-                  <div className="bg-[#f28749] bg-opacity-10 p-2 rounded-lg mr-4 mt-1">
-                    <Cloud className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <p className="text-lg">{reason}</p>
-                </div>
+                <h3 className="text-xl font-semibold mb-3 dark:text-white">{reason.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{reason.description}</p>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <a 
-              href="/contact" 
-              className="inline-block bg-[#f28749] text-white font-medium px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
-            >
-              Contact Us for Cloud Penetration Testing
-            </a>
           </div>
         </div>
       </div>
