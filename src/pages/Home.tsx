@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavBar } from '../components/ui/tubelight-navbar';
 import HeroSection from '../components/HeroSection';
+import CyberSecurityBanner from '../components/CyberSecurityBanner';
 import BrandTrust from '../components/BrandTrust';
+import StatsCounter from '../components/StatsCounter';
+import SecurityApproach from '../components/SecurityApproach';
 import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
-import ProvenRecords from '../components/ProvenRecords';
 import Testimonials from '../components/Testimonials';
 import LatestBlogs from '../components/LatestBlogs';
 import PreFooterCTA from '../components/PreFooterCTA';
@@ -17,10 +19,12 @@ const HomePage = () => {
       <NavBar items={commonNavItems} />
       <main>
         <HeroSection />
+        <CyberSecurityBanner />
         <BrandTrust />
+        <StatsCounter />
+        <SecurityApproach />
         <AboutUs />
         <Services />
-        <ProvenRecords />
         <Testimonials />
         <LatestBlogs />
         <PreFooterCTA />
