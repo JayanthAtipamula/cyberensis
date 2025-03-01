@@ -1,145 +1,294 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    workEmail: '',
+    phoneNumber: '',
+    message: '',
+    services: {
+      vulnerabilityAssessment: false,
+      webApplicationTesting: false,
+      networkInfrastructureTesting: false,
+      mobileApplicationTesting: false,
+      codeReview: false,
+      developmentServices: false,
+      consultingServices: false,
+      others: false
+    }
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData({
+      ...formData,
+      services: {
+        ...formData.services,
+        [name]: checked
+      }
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
+    console.log(formData);
+    // Reset form or show success message
   };
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 dark:text-white">Contact Us</h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Get in touch with us for any inquiries about our security services
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
+          {/* Left Column - Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold mb-6 dark:text-white">Our Headquarters</h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-lg">
-                    <MapPin className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 dark:text-white">Location</h4>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Suite 304, 4th Floor, Surabhi Plaza,<br />
-                      Opp. Lotus Hospital,<br />
-                      Srinagar Colony Main Rd,<br />
-                      behind Royal Armoury, Lakdikapul,<br />
-                      Hyderabad, Telangana 500004
-                    </p>
-                  </div>
-                </div>
+              <h3 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">GET A QUOTE</h3>
+              <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+                Want To Protect Your Organization from Emerging Cyber Threats?
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
+                Now is the perfect time to stay one step ahead of evolving cyber threats by taking proactive security measures. Fill out the form, and our expert pentesters will help you identify and address vulnerabilities before they escalate.
+              </p>
 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 dark:text-white">Phone</h4>
-                    <p className="text-gray-600 dark:text-gray-400">+91 98538 52852</p>
-                  </div>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="flex-shrink-0 bg-[#f28749] bg-opacity-10 p-3 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#f28749]">
+                    <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
                 </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-lg">
-                    <Mail className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 dark:text-white">Email</h4>
-                    <p className="text-gray-600 dark:text-gray-400">info@cyberensis.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-lg">
-                    <Clock className="h-6 w-6 text-[#f28749]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 dark:text-white">Working Hours</h4>
-                    <p className="text-gray-600 dark:text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white">12,001</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Total No. Vulnerabilities</p>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 dark:text-white">Follow Us</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-[#f28749] hover:text-white transition-colors">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd"></path>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="flex-shrink-0 bg-[#f28749] bg-opacity-10 p-3 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#f28749]">
+                    <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M23 21V19C22.9986 17.1771 21.765 15.5857 20 15.13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 3.13C17.7699 3.58317 19.0078 5.17799 19.0078 7.005C19.0078 8.83201 17.7699 10.4268 16 10.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </a>
-                <a href="#" className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-[#f28749] hover:text-white transition-colors">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white">4+</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Years in Business</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="flex-shrink-0 bg-[#f28749] bg-opacity-10 p-3 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#f28749]">
+                    <path d="M22 11.0799V11.9999C21.9986 14.1563 21.3005 16.2545 20.0093 17.9817C18.7182 19.7088 16.9033 20.9723 14.8354 21.5838C12.7674 22.1952 10.5573 22.1218 8.53447 21.3746C6.51168 20.6274 4.78465 19.246 3.61096 17.4369C2.43727 15.6279 1.87979 13.4879 2.02168 11.3362C2.16356 9.18443 2.99721 7.13619 4.39828 5.49694C5.79935 3.85768 7.69279 2.71525 9.79619 2.24001C11.8996 1.76477 14.1003 1.9822 16.07 2.85986" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </a>
-                <a href="#" className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-[#f28749] hover:text-white transition-colors">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd"></path>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white">150+</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Trusted Clients</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="flex-shrink-0 bg-[#f28749] bg-opacity-10 p-3 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#f28749]">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </a>
-                <a href="#" className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-[#f28749] hover:text-white transition-colors">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"></path>
-                  </svg>
-                </a>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white">21+</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Countries Served</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Right Column - Contact Form */}
           <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-sm">
-            <h3 className="text-2xl font-semibold mb-6 dark:text-white">Send Us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
-                    required
-                  />
-                </div>
-              </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Full Name*
                 </label>
                 <input
                   type="text"
-                  id="subject"
-                  name="subject"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Enter your full name"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
                   required
                 />
               </div>
+              
+              <div>
+                <label htmlFor="workEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Work Email*
+                </label>
+                <input
+                  type="email"
+                  id="workEmail"
+                  name="workEmail"
+                  placeholder="Enter your work email"
+                  value={formData.workEmail}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Phone Number*
+                </label>
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <select className="h-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-l-lg bg-white dark:bg-gray-700 dark:text-white">
+                      <option>+1</option>
+                      <option>+91</option>
+                      <option>+44</option>
+                    </select>
+                  </div>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    placeholder="Enter your phone number"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-r-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Types of services you need*
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="vulnerabilityAssessment"
+                      name="vulnerabilityAssessment"
+                      checked={formData.services.vulnerabilityAssessment}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="vulnerabilityAssessment" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Vulnerability Assessment
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="webApplicationTesting"
+                      name="webApplicationTesting"
+                      checked={formData.services.webApplicationTesting}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="webApplicationTesting" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Web Application Testing
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="networkInfrastructureTesting"
+                      name="networkInfrastructureTesting"
+                      checked={formData.services.networkInfrastructureTesting}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="networkInfrastructureTesting" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Network Infrastructure Testing
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="mobileApplicationTesting"
+                      name="mobileApplicationTesting"
+                      checked={formData.services.mobileApplicationTesting}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="mobileApplicationTesting" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Mobile Application Testing
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="codeReview"
+                      name="codeReview"
+                      checked={formData.services.codeReview}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="codeReview" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Code Review
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="developmentServices"
+                      name="developmentServices"
+                      checked={formData.services.developmentServices}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="developmentServices" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Development Services
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="consultingServices"
+                      name="consultingServices"
+                      checked={formData.services.consultingServices}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="consultingServices" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Consulting Services
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="others"
+                      name="others"
+                      checked={formData.services.others}
+                      onChange={handleCheckboxChange}
+                      className="h-4 w-4 text-[#f28749] focus:ring-[#f28749] border-gray-300 rounded"
+                    />
+                    <label htmlFor="others" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                      Others
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Message
@@ -147,17 +296,19 @@ const ContactSection = () => {
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={4}
+                  placeholder="Enter your message here"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-[#f28749] focus:border-[#f28749] bg-white dark:bg-gray-700 dark:text-white"
-                  required
                 ></textarea>
               </div>
+              
               <button
                 type="submit"
-                className="w-full bg-[#f28749] hover:bg-[#e07339] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                className="w-full bg-[#f28749] hover:bg-[#e07339] text-white font-medium py-3 px-6 rounded-full transition-colors flex items-center justify-center"
               >
-                Send Message
-                <Send className="ml-2 h-5 w-5" />
+                Please Send Message
               </button>
             </form>
           </div>
