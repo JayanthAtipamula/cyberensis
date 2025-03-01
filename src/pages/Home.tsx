@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavBar } from '../components/ui/tubelight-navbar';
 import HeroSection from '../components/HeroSection';
+import CyberSecurityBanner from '../components/CyberSecurityBanner';
 import BrandTrust from '../components/BrandTrust';
 import StatsCounter from '../components/StatsCounter';
 import SecurityApproach from '../components/SecurityApproach';
@@ -18,6 +19,7 @@ const HomePage = () => {
       <NavBar items={commonNavItems} />
       <main>
         <HeroSection />
+        <CyberSecurityBanner />
         <BrandTrust />
         <StatsCounter />
         <SecurityApproach />
