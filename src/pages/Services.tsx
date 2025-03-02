@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Shield, Globe, Server, Smartphone, Code, Cloud, Terminal, BookOpen, LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { commonNavItems } from '../lib/navItems';
+import PromotionalBanner from '../components/PromotionalBanner';
 
 interface ServiceType {
   id: string;
@@ -26,6 +27,12 @@ const ServicesPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServicesHero />
+        <PromotionalBanner 
+          title="Get Started with Cybersecurity Assessment"
+          description="Contact our experts to learn more about pricing, receive a free security risk assessment, or schedule a demo."
+          buttonText="Get a Demo"
+          buttonLink="/contact"
+        />
         <CoreServices />
       </main>
       <Footer />

@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FileText, Server, CheckCircle } from 'lucide-react';
 import { commonNavItems } from '../../lib/navItems';
+import PromotionalBanner from '../../components/PromotionalBanner';
 
 const NIPTPage = () => {
   return (
@@ -11,6 +12,12 @@ const NIPTPage = () => {
       <NavBar items={commonNavItems} />
       <main className="pt-20">
         <ServiceHero />
+        <PromotionalBanner 
+          title="Strengthen Your Network Security"
+          description="Contact our experts to schedule a comprehensive network infrastructure penetration test to identify and fix vulnerabilities."
+          buttonText="Request NIPT"
+          buttonLink="/contact"
+        />
         <ServiceDetails />
         <ServiceBenefits />
         <WhyChooseUs />
