@@ -5,10 +5,9 @@ interface StatItemProps {
   number: number;
   label: string;
   icon: React.ReactNode;
-  index: number;
 }
 
-const StatItem: React.FC<StatItemProps> = ({ number, label, icon, index }) => {
+const StatItem: React.FC<StatItemProps> = ({ number, label, icon }) => {
   const [count, setCount] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const { ref, inView } = useInView({
@@ -44,11 +43,7 @@ const StatItem: React.FC<StatItemProps> = ({ number, label, icon, index }) => {
   return (
     <div 
       ref={ref}
-      data-aos="fade-up"
-      data-aos-duration="800"
-      data-aos-delay={index * 100}
-      className="flex flex-col items-center sm:items-start transition-all duration-300 ease-in-out hover:shadow-lg"
-      style={{ transform: isHovered ? 'translateY(-8px)' : 'none' }}
+      className={`flex flex-col items-center sm:items-start transition-transform duration-300 ease-in-out ${isHovered ? 'transform -translate-y-2' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -83,7 +78,7 @@ const StatsCounter: React.FC = () => {
   return (
     <section className="py-20 md:py-28 bg-gradient-to-r from-[#f28749] to-[#e9446a]">
       <div className="container mx-auto px-4">
-        <div data-aos="fade-up" data-aos-duration="1000" className="text-center mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white relative inline-block">
             Our Impact By The Numbers
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
@@ -96,7 +91,6 @@ const StatsCounter: React.FC = () => {
           <StatItem 
             number={37} 
             label="Web Applications Secured" 
-            index={0}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -106,7 +100,6 @@ const StatsCounter: React.FC = () => {
           <StatItem 
             number={62} 
             label="Network IP's Secured" 
-            index={1}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z M8 4v4M16 4v4M4 11h16" />
@@ -116,7 +109,6 @@ const StatsCounter: React.FC = () => {
           <StatItem 
             number={27} 
             label="Mobile Apps Secured" 
-            index={2}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -126,7 +118,6 @@ const StatsCounter: React.FC = () => {
           <StatItem 
             number={52} 
             label="Secure Web Development" 
-            index={3}
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // Define the testimonial type
 interface Testimonial {
@@ -14,14 +15,9 @@ interface Testimonial {
 interface TestimonialCardProps {
   testimonial: Testimonial;
   index: number;
-  row: number;
 }
 
 const Testimonials = () => {
-  // Refs for the scrolling containers
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-  
   // Testimonials data
   const testimonials: Testimonial[] = [
     {
@@ -72,52 +68,8 @@ const Testimonials = () => {
   const row1Testimonials = [...testimonials, ...testimonials, ...testimonials];
   const row2Testimonials = [...testimonials.reverse(), ...testimonials.reverse(), ...testimonials.reverse()];
 
-  // Set up the scrolling animation
-  useEffect(() => {
-    const row1Element = row1Ref.current;
-    const row2Element = row2Ref.current;
-    
-    if (!row1Element || !row2Element) return;
-    
-    // Calculate the width of a single testimonial card (including margins)
-    const cardWidth = 280 + 24; // 280px width + 24px margins (12px on each side)
-    
-    // Calculate the width of a single set of testimonials
-    const singleSetWidth = cardWidth * testimonials.length;
-    
-    let row1Position = 0;
-    let row2Position = 0;
-    
-    const animate = () => {
-      // Row 1 moves right to left
-      row1Position -= 0.5;
-      // Reset position when one set has scrolled by
-      if (row1Position <= -singleSetWidth) {
-        row1Position = 0;
-      }
-      
-      // Row 2 moves left to right
-      row2Position += 0.5;
-      // Reset position when one set has scrolled by
-      if (row2Position >= singleSetWidth) {
-        row2Position = 0;
-      }
-      
-      if (row1Element) row1Element.style.transform = `translateX(${row1Position}px)`;
-      if (row2Element) row2Element.style.transform = `translateX(${row2Position}px)`;
-      
-      requestAnimationFrame(animate);
-    };
-    
-    const animationId = requestAnimationFrame(animate);
-    
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [testimonials.length]);
-
   // Testimonial card component
-  const TestimonialCard = ({ testimonial, index, row }: TestimonialCardProps) => (
+  const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => (
     <div 
       className="flex-shrink-0 w-[280px] bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 mx-3 border border-gray-100 dark:border-gray-700"
       style={{ 
@@ -162,7 +114,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-16 pb-24 bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 overflow-hidden">
       <div className="container mx-auto px-4 mb-8">
-        <div data-aos="fade-up" data-aos-duration="1000" className="text-center mb-10 relative">
+        <div className="text-center mb-10 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white relative inline-block">
             What Our Clients Say
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
@@ -174,34 +126,54 @@ const Testimonials = () => {
         </div>
       </div>
       
-      <div className="testimonials-container">
-        {/* First row - moves right to left */}
-        <div className="relative mb-16 h-[220px] overflow-visible">
-          <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
-          
-          <div ref={row1Ref} className="flex absolute" style={{ willChange: 'transform' }}>
-            {row1Testimonials.map((testimonial, index) => (
-              <TestimonialCard key={`row1-${index}`} testimonial={testimonial} index={index} row={1} />
-            ))}
-          </div>
-        </div>
+      {/* First row - moves right to left */}
+      <div className="relative mb-6 overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
         
-        {/* Second row - moves left to right (opposite direction) */}
-        <div className="relative h-[220px] overflow-visible">
-          <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
-          
-          <div ref={row2Ref} className="flex absolute" style={{ willChange: 'transform' }}>
-            {row2Testimonials.map((testimonial, index) => (
-              <TestimonialCard key={`row2-${index}`} testimonial={testimonial} index={index} row={2} />
+        <motion.div 
+          className="flex"
+          animate={{ x: ["0%", "-100%"] }}
+          transition={{ 
+            repeat: Infinity, 
+            repeatType: "loop",
+            duration: 40,
+            ease: "linear"
+          }}
+        >
+          <div className="flex">
+            {row1Testimonials.map((testimonial, index) => (
+              <TestimonialCard key={`row1-${index}`} testimonial={testimonial} index={index} />
             ))}
           </div>
-        </div>
+        </motion.div>
+      </div>
+      
+      {/* Second row - moves left to right (opposite direction) */}
+      <div className="relative overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
+        
+        <motion.div 
+          className="flex"
+          animate={{ x: ["-100%", "0%"] }}
+          transition={{ 
+            repeat: Infinity, 
+            repeatType: "loop",
+            duration: 40,
+            ease: "linear"
+          }}
+        >
+          <div className="flex">
+            {row2Testimonials.map((testimonial, index) => (
+              <TestimonialCard key={`row2-${index}`} testimonial={testimonial} index={index} />
+            ))}
+          </div>
+        </motion.div>
       </div>
       
       {/* Call to action */}
-      <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" className="text-center mt-16 mb-8">
+      <div className="text-center mt-16 mb-8">
         <a 
           href="/contact" 
           className="inline-flex items-center px-6 py-3 bg-[#f28749] text-white font-medium rounded-md hover:bg-[#e07339] transition-colors"

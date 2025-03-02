@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, Lock, ArrowRight } from 'lucide-react';
+import { BlurFade } from './ui/blur-fade';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ErrorBoundary } from 'react-error-boundary';
 import ParticlesBackground from './ui/ParticlesBackground';
 import { Link } from 'react-router-dom';
@@ -10,25 +12,17 @@ const FallbackComponent = () => (
 
 const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const headlines = [
     "Defend, Detect, and\nRespond",
     "Get insights into the mechanism &\nprospects of Cyber Security"
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      // First hide the current text
-      setIsVisible(false);
-      
-      // After the text is hidden, change it and show the new text
-      setTimeout(() => {
-        setTextIndex((prev) => (prev === 0 ? 1 : 0));
-        setIsVisible(true);
-      }, 600); // Wait for fade-out to complete
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev === 0 ? 1 : 0));
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -45,27 +39,30 @@ const HeroSection = () => {
       <div className="container mx-auto px-8 md:px-12 lg:px-16 relative h-full">
         <div className="flex flex-col md:flex-row items-center justify-center h-full">
           <div className="md:w-3/4 lg:w-2/3 text-center md:text-left z-10">
-            <div data-aos="fade-up" data-aos-delay="250" data-aos-duration="800">
-              <div className="h-[220px] sm:h-[200px] md:h-[220px] flex items-start">
-                <h1 
-                  className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 whitespace-pre-line transition-all duration-600 ease-in-out ${
-                    isVisible 
-                      ? 'opacity-100 transform translate-y-0' 
-                      : 'opacity-0 transform -translate-y-8'
-                  }`}
-                >
-                  {headlines[textIndex]}
-                </h1>
+            <BlurFade delay={0.25} inView>
+              <div className="h-[220px] sm:h-[200px] md:h-[220px]">
+                <AnimatePresence mode="wait">
+                  <motion.h1
+                    key={textIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 whitespace-pre-line"
+                  >
+                    {headlines[textIndex]}
+                  </motion.h1>
+                </AnimatePresence>
               </div>
-            </div>
+            </BlurFade>
             
-            <div data-aos="fade-up" data-aos-delay="350" data-aos-duration="800">
+            <BlurFade delay={0.5} inView>
               <p className="text-lg sm:text-xl mb-8 text-gray-100 max-w-2xl mx-auto md:mx-0">
                 Protecting Businesses with Cutting-Edge Security Solutions
               </p>
-            </div>
+            </BlurFade>
             
-            <div data-aos="fade-up" data-aos-delay="450" data-aos-duration="800">
+            <BlurFade delay={0.6} inView>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-10">
                 <div className="flex items-center">
                   <div className="bg-blue-500/20 rounded-full p-2 mr-3">
@@ -80,9 +77,9 @@ const HeroSection = () => {
                   <span>24/7 Security Monitoring</span>
                 </div>
               </div>
-            </div>
+            </BlurFade>
             
-            <div data-aos="fade-up" data-aos-delay="550" data-aos-duration="800">
+            <BlurFade delay={0.75} inView>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
                 <Link to="/contact" className="bg-[#f28749] text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors font-medium inline-flex items-center justify-center">
                   Get Started Now
@@ -92,7 +89,7 @@ const HeroSection = () => {
                   Learn More
                 </Link>
               </div>
-            </div>
+            </BlurFade>
           </div>
         </div>
       </div>

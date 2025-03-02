@@ -7,7 +7,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { LoadingScreen } from './components/ui/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
 import WhatsAppButton from './components/WhatsAppButton';
-import AOSInitializer from './components/AOSInitializer';
 
 // Admin Pages
 import Login from './pages/admin/Login';
@@ -54,7 +53,6 @@ function App() {
         <Router>
           <ScrollToTop />
           <WhatsAppButton />
-          <AOSInitializer />
           <AuthProvider>
             <Routes>
               {/* Admin Routes */}

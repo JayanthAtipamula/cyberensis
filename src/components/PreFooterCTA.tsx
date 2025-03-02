@@ -7,7 +7,7 @@ const PreFooterCTA: React.FC = () => {
         <div className="max-w-5xl mx-auto text-center">
           <div className="flex flex-col items-center justify-center gap-8">
             {/* Text Content */}
-            <div data-aos="fade-up" data-aos-duration="1000" className="max-w-4xl">
+            <div className="max-w-4xl">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-black relative inline-block">
                 We dared to push identity security further.
                 Discover what's possible.
@@ -18,9 +18,6 @@ const PreFooterCTA: React.FC = () => {
               </p>
             </div>
             <a 
-              data-aos="fade-up" 
-              data-aos-duration="800"
-              data-aos-delay="200"
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-black rounded-full hover:bg-gray-800 transition-colors duration-300"
             >

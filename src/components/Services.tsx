@@ -56,42 +56,54 @@ const Services = () => {
 
   return (
     <section id="services" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-6 lg:px-16">
-        <div data-aos="fade-up" data-aos-duration="800" className="text-center mb-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white relative inline-block">
             Our Services
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
-            We offer a comprehensive range of cybersecurity services to protect your business from evolving threats.
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
+            We offer a comprehensive range of cybersecurity services to protect your business from evolving digital threats.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={service.title}
-              data-aos="fade-up" 
-              data-aos-duration="800"
-              data-aos-delay={100 * index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <Feature
-                title={service.title}
-                description={service.description}
-                icon={service.icon}
-                index={index}
-                url={service.url}
-                color={service.color}
-              />
-            </div>
+        {/* First row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {firstRowServices.map((service, index) => (
+            <Feature
+              key={index}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              index={index}
+              url={service.url}
+              color={service.color}
+            />
           ))}
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="300" className="text-center mt-12">
-          <Link to="/services" className="inline-flex items-center text-[#f28749] font-medium hover:underline">
+        {/* Second row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {secondRowServices.map((service, index) => (
+            <Feature
+              key={index + 3}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              index={index + 3}
+              url={service.url}
+              color={service.color}
+            />
+          ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <Link 
+            to="/services" 
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+          >
             View All Services
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
       </div>
