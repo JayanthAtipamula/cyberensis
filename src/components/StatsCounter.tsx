@@ -49,26 +49,26 @@ const StatItem: React.FC<StatItemProps> = ({ number, label, icon }) => {
     >
       {/* Mobile layout (vertical) */}
       <div className="flex flex-col items-center sm:hidden">
-        <div className="bg-white bg-opacity-20 rounded-full p-3 mb-3">
-          <div className="text-white w-10 h-10 flex items-center justify-center">
+        <div className="bg-white bg-opacity-20 rounded-full p-4 mb-4">
+          <div className="text-white w-12 h-12 flex items-center justify-center">
             {icon}
           </div>
         </div>
-        <h3 className="text-4xl font-extrabold text-white mb-2">{count}+</h3>
-        <p className="text-sm text-white font-medium text-center">{label}</p>
+        <h3 className="text-5xl font-extrabold text-white mb-3">{count}+</h3>
+        <p className="text-base text-white font-medium text-center">{label}</p>
       </div>
       
       {/* Tablet and desktop layout (horizontal) */}
       <div className="hidden sm:flex sm:flex-col">
-        <div className="flex items-center mb-3">
-          <div className="bg-white bg-opacity-20 rounded-full p-3 mr-4">
-            <div className="text-white w-9 h-9 flex items-center justify-center">
+        <div className="flex items-center mb-4">
+          <div className="bg-white bg-opacity-20 rounded-full p-4 mr-5">
+            <div className="text-white w-12 h-12 flex items-center justify-center">
               {icon}
             </div>
           </div>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-white">{count}+</h3>
+          <h3 className="text-5xl md:text-6xl font-extrabold text-white">{count}+</h3>
         </div>
-        <p className="text-base md:text-lg text-white font-medium pl-2">{label}</p>
+        <p className="text-lg md:text-xl text-white font-medium pl-2">{label}</p>
       </div>
     </div>
   );
@@ -76,9 +76,9 @@ const StatItem: React.FC<StatItemProps> = ({ number, label, icon }) => {
 
 const StatsCounter: React.FC = () => {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-r from-[#f28749] to-[#e9446a]">
+    <section className="py-20 md:py-28 bg-gradient-to-r from-[#f28749] to-[#e9446a]">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 max-w-6xl mx-auto">
           <StatItem 
             number={37} 
             label="Web Applications Secured" 

@@ -19,11 +19,11 @@ const HomePage = () => {
       <NavBar items={commonNavItems} />
       <main>
         <HeroSection />
-        <CyberSecurityBanner />
         <BrandTrust />
+        <CyberSecurityBanner />
+        <AboutUs />
         <StatsCounter />
         <SecurityApproach />
-        <AboutUs />
         <Services />
         <Testimonials />
         <LatestBlogs />
