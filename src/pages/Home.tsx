@@ -13,6 +13,7 @@ import PreFooterCTA from '../components/PreFooterCTA';
 import Footer from '../components/Footer';
 import { commonNavItems } from '../lib/navItems';
 import PromotionalBanner from '../components/PromotionalBanner';
+import ConnectivityCloud from '../components/ConnectivityCloud';
 
 const HomePage = () => {
   return (
@@ -26,6 +27,7 @@ const HomePage = () => {
         <StatsCounter />
         <SecurityApproach />
         <Services />
+        <ConnectivityCloud />
         <PromotionalBanner 
           title="Get Started with Cybersecurity Assessment"
           description="Contact our experts to learn more about pricing, receive a free security risk assessment, or schedule a demo."

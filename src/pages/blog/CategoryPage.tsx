@@ -114,75 +114,96 @@ export default function CategoryPage() {
       <NavBar items={commonNavItems} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
-        <div className="mb-6">
+        <div className="mb-8">
           <Link
             to="/blog"
-            className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700"
+            className="inline-flex items-center text-sm text-gray-500 hover:text-[#f28749] transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Blog
           </Link>
         </div>
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        {/* Enhanced Category Header */}
+        <div className="text-center mb-16 relative">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full opacity-30"></div>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 relative inline-block">
             {category.name}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
           </h1>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-4">
             Browse all articles in the {category.name} category
           </p>
         </div>
 
         {posts.length === 0 ? (
-          <div className="text-center py-12">
-            <h2 className="text-xl font-medium text-gray-900 mb-2">No posts found</h2>
-            <p className="text-gray-500">
+          <div className="text-center py-16 bg-gray-50 rounded-lg shadow-sm">
+            <h2 className="text-xl font-medium text-gray-900 mb-3">No posts found</h2>
+            <p className="text-gray-500 mb-6">
               There are no published posts in this category yet. Check back soon!
             </p>
+            <Link
+              to="/blog"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-[#1e3a8a] to-[#2d4eaa] hover:from-[#f28749] hover:to-[#d97a3f] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f28749]"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Browse Other Categories
+            </Link>
           </div>
         ) : (
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <article key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
-                {post.featuredImage && (
-                  <Link to={`/blog/${post.slug}`} className="block h-48 overflow-hidden">
-                    <img
-                      src={post.featuredImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {posts.map((post, index) => (
+              <div key={post.id} className="rounded-lg overflow-hidden shadow-lg flex flex-col h-full transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl">
+                {/* Image Section */}
+                <div className="relative h-52 overflow-hidden rounded-t-lg">
+                  {post.featuredImage ? (
+                    <img 
+                      src={post.featuredImage} 
+                      alt={post.title} 
+                      className="w-full h-full object-cover rounded-t-lg transform transition-transform duration-500 hover:scale-110"
                     />
-                  </Link>
-                )}
-                
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex-1">
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">
-                      <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749]">
-                        {post.title}
-                      </Link>
-                    </h2>
-                    
-                    <div className="flex items-center text-sm text-gray-500 mb-4">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      <time dateTime={new Date(post.createdAt).toISOString()}>
-                        {formatDate(post.createdAt)}
-                      </time>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#2d4eaa] rounded-t-lg">
+                      <span className="text-white text-2xl font-bold">{post.title.substring(0, 2).toUpperCase()}</span>
                     </div>
-                    
-                    <p className="text-gray-600 mb-4">
-                      {truncateText(extractTextFromHtml(post.content), 150)}
-                    </p>
+                  )}
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-6 bg-gradient-to-br from-[#1e3a8a] to-[#2d4eaa] text-white flex flex-col flex-grow rounded-b-lg">
+                  <div className="flex items-center mb-3">
+                    <span className="bg-blue-500/30 text-blue-200 text-xs font-medium px-3 py-1 rounded-full flex items-center">
+                      <Tag className="w-3 h-3 mr-1" />
+                      {category.name}
+                    </span>
                   </div>
                   
-                  <Link
-                    to={`/blog/${post.slug}`}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#f28749] hover:bg-[#d97a3f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f28749]"
-                  >
-                    Read more
-                    <ArrowRight className="h-4 w-4 ml-1" />
-                  </Link>
+                  <h3 className="text-xl font-bold mb-3 line-clamp-2">
+                    <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749] transition-colors">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p className="text-gray-200 mb-4 line-clamp-3 flex-grow">
+                    {truncateText(extractTextFromHtml(post.content), 100)}
+                  </p>
+                  <div className="mt-auto flex justify-between items-center pt-3 border-t border-blue-700/30">
+                    <div className="text-xs text-gray-300">
+                      <Calendar className="h-3 w-3 inline mr-1" />
+                      {formatDate(post.createdAt)}
+                    </div>
+                    <Link 
+                      to={`/blog/${post.slug}`} 
+                      className="inline-flex items-center text-white hover:text-[#f28749] group"
+                      aria-label={`Read more about ${post.title}`}
+                    >
+                      <span className="mr-1 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read</span>
+                      <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         )}

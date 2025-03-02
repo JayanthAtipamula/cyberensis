@@ -67,7 +67,10 @@ const WhyChooseUs = () => {
     <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 dark:text-white">Why Choose Cyberensis InfoSec</h2>
+          <h2 className="text-3xl font-bold mb-4 dark:text-white relative inline-block">
+            Why Choose Cyberensis InfoSec
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -98,7 +101,10 @@ const CompanyMissionVision = () => {
     <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center dark:text-white">Our Company Values</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center dark:text-white relative inline-block">
+            Our Company Values
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             {/* Vision Block - Mobile-first approach */}

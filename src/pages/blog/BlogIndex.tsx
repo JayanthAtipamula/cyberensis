@@ -13,7 +13,7 @@ export default function BlogIndex() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAllPosts, setShowAllPosts] = useState(false);
-  const postsPerPage = 6;
+  const postsPerPage = 8;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,25 +91,33 @@ export default function BlogIndex() {
       <NavBar items={commonNavItems} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {/* Enhanced Header Section */}
+        <div className="text-center mb-16 relative">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full opacity-30"></div>
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 relative inline-block">
             Our Blog
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
           </h1>
-          <p className="text-xl text-gray-500 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mt-4">
             Stay updated with our latest articles, news, and insights on cybersecurity.
           </p>
         </div>
 
-        {/* Categories Section */}
+        {/* Improved Categories Section */}
         {categories.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Categories</h2>
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center relative inline-flex items-center">
+              <span className="bg-[#f28749] w-2 h-8 rounded-full mr-3"></span>
+              Categories
+            </h2>
             <div className="flex flex-wrap gap-3 justify-center">
               {categories.map((category) => (
                 <Link
                   key={category.id}
                   to={`/category/${category.slug}`}
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-[#f28749] hover:text-white transition-colors"
+                  className="px-5 py-2.5 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-[#1e3a8a] hover:text-white transition-colors duration-300 shadow-sm hover:shadow-md"
                 >
                   {category.name}
                 </Link>
@@ -128,81 +136,66 @@ export default function BlogIndex() {
           </div>
         ) : (
           <>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {displayedPosts.map((post) => (
-                <article key={post.id} className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden flex flex-col h-full border border-transparent dark:border-gray-600">
-                  {post.featuredImage && (
-                    <Link to={`/blog/${post.slug}`} className="block h-48 overflow-hidden">
-                      <img
-                        src={post.featuredImage}
-                        alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {displayedPosts.map((post, index) => (
+                <div key={post.id} className="rounded-lg overflow-hidden shadow-lg flex flex-col h-full transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl">
+                  {/* Image Section */}
+                  <div className="relative h-52 overflow-hidden rounded-t-lg">
+                    {post.featuredImage ? (
+                      <img 
+                        src={post.featuredImage} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover rounded-t-lg transform transition-transform duration-500 hover:scale-110"
                       />
-                    </Link>
-                  )}
-                  
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex-1">
-                      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                        <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749]">
-                          {post.title}
-                        </Link>
-                      </h2>
-                      
-                      <div className="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-300 mb-4">
-                        <div className="flex items-center mr-4 mb-2">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          <time dateTime={new Date(post.createdAt).toISOString()}>
-                            {formatDate(post.createdAt)}
-                          </time>
-                        </div>
-                        
-                        {post.categories.length > 0 && (
-                          <div className="flex items-center mb-2">
-                            <Tag className="h-4 w-4 mr-1" />
-                            <div className="flex flex-wrap gap-1">
-                              {post.categories.slice(0, 1).map(categoryId => (
-                                <Link 
-                                  key={categoryId}
-                                  to={`/category/${getCategorySlug(categoryId)}`}
-                                  className="hover:text-[#f28749]"
-                                >
-                                  {getCategoryName(categoryId)}
-                                </Link>
-                              ))}
-                              {post.categories.length > 1 && (
-                                <span className="text-gray-400 dark:text-gray-300">
-                                  {` +${post.categories.length - 1}`}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        )}
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#2d4eaa] rounded-t-lg">
+                        <span className="text-white text-2xl font-bold">{post.title.substring(0, 2).toUpperCase()}</span>
                       </div>
-                      
-                      <p className="text-gray-600 dark:text-gray-200 mb-4">
-                        {truncateText(extractTextFromHtml(post.content), 150)}
-                      </p>
+                    )}
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6 bg-gradient-to-br from-[#1e3a8a] to-[#2d4eaa] text-white flex flex-col flex-grow rounded-b-lg">
+                    <div className="flex items-center mb-3">
+                      <span className="bg-blue-500/30 text-blue-200 text-xs font-medium px-3 py-1 rounded-full flex items-center">
+                        <Tag className="w-3 h-3 mr-1" />
+                        General
+                      </span>
                     </div>
                     
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#f28749] hover:bg-[#d97a3f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f28749]"
-                    >
-                      Read more
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    <h3 className="text-xl font-bold mb-3 line-clamp-2">
+                      <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749] transition-colors">
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p className="text-gray-200 mb-4 line-clamp-3 flex-grow">
+                      {truncateText(extractTextFromHtml(post.content), 100)}
+                    </p>
+                    <div className="mt-auto flex justify-between items-center pt-3 border-t border-blue-700/30">
+                      <div className="text-xs text-gray-300">
+                        <Calendar className="h-3 w-3 inline mr-1" />
+                        {formatDate(post.createdAt)}
+                      </div>
+                      <Link 
+                        to={`/blog/${post.slug}`} 
+                        className="inline-flex items-center text-white hover:text-[#f28749] group"
+                        aria-label={`Read more about ${post.title}`}
+                      >
+                        <span className="mr-1 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read</span>
+                        <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
-                </article>
+                </div>
               ))}
             </div>
             
             {/* View All / View Less Button */}
             {posts.length > postsPerPage && (
-              <div className="mt-12 text-center">
+              <div className="mt-16 text-center">
                 <button
                   onClick={() => setShowAllPosts(!showAllPosts)}
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#f28749] hover:bg-[#d97a3f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f28749]"
+                  className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-md text-white bg-gradient-to-r from-[#1e3a8a] to-[#2d4eaa] hover:from-[#f28749] hover:to-[#d97a3f] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f28749]"
                 >
                   {showAllPosts ? 'Show Less' : `View All Posts (${posts.length})`}
                   {!showAllPosts && <ChevronRight className="h-5 w-5 ml-1" />}

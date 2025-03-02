@@ -58,7 +58,10 @@ const ServiceDetails = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Cybersecurity Training Programs</h2>
+          <h2 className="text-3xl font-bold mb-8 relative inline-block">
+            Cybersecurity Training Programs
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="prose prose-lg max-w-none">
             <p className="mb-6">
@@ -105,7 +108,10 @@ const TrainingCards = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center">Get Started with Cybersecurity</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center relative inline-block">
+            Get Started with Cybersecurity
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Business Cybersecurity Requirements Card */}
             <div className="bg-white p-10 rounded-lg border border-gray-200 shadow-sm flex flex-col items-center text-center">
@@ -162,7 +168,10 @@ const ServiceOfferings = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Our Training Programs</h2>
+          <h2 className="text-3xl font-bold mb-10 relative inline-block">
+            Our Training Programs
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-8 rounded-xl shadow-sm">
@@ -298,7 +307,10 @@ const ServiceBenefits = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Benefits of Our Cybersecurity Training</h2>
+          <h2 className="text-3xl font-bold mb-10 relative inline-block">
+            Benefits of Our Cybersecurity Training
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 gap-4">
             {benefits.map((benefit, index) => (
@@ -334,7 +346,10 @@ const WhyChooseUs = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Why Choose Cyberensis for Cybersecurity Training</h2>
+          <h2 className="text-3xl font-bold mb-10 relative inline-block">
+            Why Choose Cyberensis for Cybersecurity Training
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 gap-6">
             {reasons.map((reason, index) => (

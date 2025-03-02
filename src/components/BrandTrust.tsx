@@ -12,10 +12,7 @@ const BrandTrust: React.FC = () => {
     { name: 'Facebook', logo: '/assets/brandicons/facebook.jpg' },
     { name: 'Harvard', logo: '/assets/brandicons/Harvard.jpg' },
     { name: 'Mastercard', logo: '/assets/brandicons/MC.jpg' },
-    { name: 'Microsoft', logo: '/assets/brandicons/mslogo.jpg' },
-    { name: 'Pinterest', logo: '/assets/brandicons/pinterest.jpg' },
     { name: 'Skyscanner', logo: '/assets/brandicons/Skyscanner-Logo.png' },
-    { name: 'Sophos', logo: '/assets/brandicons/sophos.jpg' },
     { name: 'Western Union', logo: '/assets/brandicons/wu.png' },
     { name: 'Comcast', logo: '/assets/brandicons/comcast.jpg' },
     { name: 'Department of Defense', logo: '/assets/brandicons/dod.jpg' },
@@ -24,8 +21,9 @@ const BrandTrust: React.FC = () => {
   return (
     <section className="py-16 bg-white dark:bg-gray-900">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white relative inline-block">
           Trusted by <span className="text-orange-500">Leading Brands</span>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
         </h2>
       </div>
       

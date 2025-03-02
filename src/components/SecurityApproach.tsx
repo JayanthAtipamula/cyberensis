@@ -73,9 +73,12 @@ const SecurityApproach = () => {
   return (
     <section className="py-16 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">Our Approach To Security</h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <div className="text-center mb-12 relative">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white relative inline-block">
+            Our Approach To Security
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mt-4">
             There is no such thing as a secure system! With the best minds in the security industry, we help
             complex organizations protect their web applications, cloud, networks and mobile phones.
           </p>

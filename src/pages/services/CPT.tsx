@@ -61,7 +61,10 @@ const ServiceDetails = () => {
             <div className="bg-[#f28749] bg-opacity-10 p-3 rounded-full mr-4">
               <Cloud className="h-8 w-8 text-[#f28749]" />
             </div>
-            <h2 className="text-3xl font-bold dark:text-white">What is Cloud Penetration Testing?</h2>
+            <h2 className="text-3xl font-bold dark:text-white relative inline-block">
+              What is Cloud Penetration Testing?
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+            </h2>
           </div>
           
           <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
@@ -105,7 +108,10 @@ const ServiceProcess = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">The Process of Cloud Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 relative inline-block">
+            The Process of Cloud Penetration Testing
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-8 rounded-xl shadow-sm">
@@ -162,7 +168,10 @@ const ServiceBenefits = () => {
     <section className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Benefits of Our Cloud Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white relative inline-block">
+            Benefits of Our Cloud Penetration Testing
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
@@ -209,7 +218,10 @@ const WhyChooseUs = () => {
     <section className="py-16 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6 lg:px-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">Why Choose Our Cloud Penetration Testing</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center dark:text-white relative inline-block">
+            Why Choose Our Cloud Testing Services
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {reasons.map((reason, index) => (

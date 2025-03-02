@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon, Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "../../lib/utils"
 import { ThemeToggle } from "./ThemeToggle"
+import AboutPreview from "./AboutPreview"
+import ContactPreview from "./ContactPreview"
 
 interface NavItem {
   name: string
@@ -112,7 +114,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
     <>
       <div
         className={cn(
-          "fixed top-0 left-0 right-0 z-[100] bg-gradient-to-b from-white/40 to-white/30 backdrop-blur-xl dark:from-gray-900/80 dark:to-gray-900/70",
+          "fixed top-0 left-0 right-0 z-[100] bg-white dark:bg-gray-900 shadow-sm",
           className,
         )}
       >
@@ -218,36 +220,44 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                         </AnimatePresence>
                       </div>
                     ) : (
-                      <a
-                        href={item.url}
-                        onClick={() => setActiveTab(item.name)}
-                        className={cn(
-                          "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
-                          "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
-                          "dark:text-gray-200 dark:hover:text-[#f28749] dark:hover:bg-gray-800/50",
-                          isActive && "bg-white/50 text-[#f28749] shadow-sm dark:bg-gray-800/50",
-                        )}
-                      >
-                        <span>{item.name}</span>
-                        {isActive && (
-                          <motion.div
-                            layoutId="lamp"
-                            className="absolute inset-0 w-full bg-[#f28749]/5 dark:bg-[#f28749]/10 rounded-full -z-10"
-                            initial={false}
-                            transition={{
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            }}
-                          >
-                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#f28749] rounded-t-full">
-                              <div className="absolute w-12 h-6 bg-[#f28749]/20 rounded-full blur-md -top-2 -left-2" />
-                              <div className="absolute w-8 h-6 bg-[#f28749]/20 rounded-full blur-md -top-1" />
-                              <div className="absolute w-4 h-4 bg-[#f28749]/20 rounded-full blur-sm top-0 left-2" />
-                            </div>
-                          </motion.div>
-                        )}
-                      </a>
+                      <div className="relative">
+                        <a
+                          href={item.url}
+                          onClick={() => setActiveTab(item.name)}
+                          className={cn(
+                            "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
+                            "text-gray-700 hover:text-[#f28749] hover:bg-white/50",
+                            "dark:text-gray-200 dark:hover:text-[#f28749] dark:hover:bg-gray-800/50",
+                            isActive && "bg-white/50 text-[#f28749] shadow-sm dark:bg-gray-800/50",
+                          )}
+                        >
+                          <span>{item.name}</span>
+                          {isActive && (
+                            <motion.div
+                              layoutId="lamp"
+                              className="absolute inset-0 w-full bg-[#f28749]/5 dark:bg-[#f28749]/10 rounded-full -z-10"
+                              initial={false}
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              }}
+                            >
+                              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#f28749] rounded-t-full">
+                                <div className="absolute w-12 h-6 bg-[#f28749]/20 rounded-full blur-md -top-2 -left-2" />
+                                <div className="absolute w-8 h-6 bg-[#f28749]/20 rounded-full blur-md -top-1" />
+                                <div className="absolute w-4 h-4 bg-[#f28749]/20 rounded-full blur-sm top-0 left-2" />
+                              </div>
+                            </motion.div>
+                          )}
+                        </a>
+                        
+                        {/* Show AboutPreview for About link on hover */}
+                        <AnimatePresence>
+                          {item.name === "About" && isHovered && <AboutPreview />}
+                          {item.name === "Contact" && isHovered && <ContactPreview />}
+                        </AnimatePresence>
+                      </div>
                     )}
                   </div>
                 )
@@ -278,7 +288,7 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[99] pt-20 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-y-auto"
+            className="fixed inset-0 z-[99] pt-20 bg-white dark:bg-gray-900 overflow-y-auto"
           >
             <div className="container mx-auto px-8 py-6">
               <div className="flex flex-col space-y-4">

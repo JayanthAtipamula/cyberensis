@@ -66,8 +66,9 @@ const AboutUs = () => {
 
           {/* Right side - Content */}
           <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white relative inline-block">
               Securing Your Digital Future with Expert Solutions
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
             </h2>
             
             <motion.div

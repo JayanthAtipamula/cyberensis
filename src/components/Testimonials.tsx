@@ -1,161 +1,213 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { Star, Quote } from 'lucide-react';
+
+// Define the testimonial type
+interface Testimonial {
+  name: string;
+  company: string;
+  image: string;
+  quote: string;
+  rating: number;
+}
+
+// Define the props for the TestimonialCard component
+interface TestimonialCardProps {
+  testimonial: Testimonial;
+  index: number;
+  row: number;
+}
 
 const Testimonials = () => {
-  const testimonials = [
+  // Refs for the scrolling containers
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+  
+  // Testimonials data
+  const testimonials: Testimonial[] = [
     {
       name: "Sarah Johnson",
       company: "TechCorp Inc.",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-      quote: "CyberShield's penetration testing uncovered critical vulnerabilities that our internal team missed. Their detailed reports and remediation guidance were invaluable in strengthening our security posture.",
+      quote: "Cyberensis's penetration testing uncovered critical vulnerabilities that our internal team missed. Their detailed reports and remediation guidance were invaluable in strengthening our security posture.",
       rating: 5
     },
     {
       name: "Michael Chen",
       company: "FinSecure Solutions",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-      quote: "As a financial services provider, security is paramount. The CyberShield team demonstrated exceptional expertise in identifying potential attack vectors in our web applications.",
+      quote: "As a financial services provider, security is paramount. The Cyberensis team demonstrated exceptional expertise in identifying potential attack vectors in our web applications.",
       rating: 5
     },
     {
       name: "Emily Rodriguez",
       company: "HealthData Systems",
       image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-      quote: "Working with CyberShield has been a game-changer for our healthcare platform. Their thorough API testing ensured our patient data remains protected against emerging threats.",
+      quote: "Working with Cyberensis has been a game-changer for our healthcare platform. Their thorough API testing ensured our patient data remains protected against emerging threats.",
+      rating: 4
+    },
+    {
+      name: "David Wilson",
+      company: "E-Commerce Plus",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      quote: "The incident response team at Cyberensis was exceptional. When we detected a potential breach, they were on it within minutes, containing the threat and providing clear recovery steps.",
+      rating: 5
+    },
+    {
+      name: "Priya Patel",
+      company: "CloudNine Solutions",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      quote: "The cloud security assessment conducted by Cyberensis revealed configuration issues we had overlooked. Their recommendations helped us achieve compliance with industry standards.",
+      rating: 5
+    },
+    {
+      name: "James Thompson",
+      company: "Retail Chain Group",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      quote: "Cyberensis's security awareness training transformed how our employees think about cybersecurity. The phishing simulations were eye-opening and dramatically improved our security culture.",
       rating: 4
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
+  // Duplicate testimonials for continuous scrolling effect
+  const row1Testimonials = [...testimonials, ...testimonials, ...testimonials];
+  const row2Testimonials = [...testimonials.reverse(), ...testimonials.reverse(), ...testimonials.reverse()];
 
-  const nextTestimonial = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  }, [testimonials.length]);
-
-  const prevTestimonial = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
-  }, [testimonials.length]);
-
-  // Auto-scrolling functionality
+  // Set up the scrolling animation
   useEffect(() => {
-    if (isAutoScrolling && !isPaused) {
-      const interval = setInterval(() => {
-        nextTestimonial();
-      }, 5000); // Change testimonial every 5 seconds
+    const row1Element = row1Ref.current;
+    const row2Element = row2Ref.current;
+    
+    if (!row1Element || !row2Element) return;
+    
+    // Calculate the width of a single testimonial card (including margins)
+    const cardWidth = 280 + 24; // 280px width + 24px margins (12px on each side)
+    
+    // Calculate the width of a single set of testimonials
+    const singleSetWidth = cardWidth * testimonials.length;
+    
+    let row1Position = 0;
+    let row2Position = 0;
+    
+    const animate = () => {
+      // Row 1 moves right to left
+      row1Position -= 0.5;
+      // Reset position when one set has scrolled by
+      if (row1Position <= -singleSetWidth) {
+        row1Position = 0;
+      }
+      
+      // Row 2 moves left to right
+      row2Position += 0.5;
+      // Reset position when one set has scrolled by
+      if (row2Position >= singleSetWidth) {
+        row2Position = 0;
+      }
+      
+      if (row1Element) row1Element.style.transform = `translateX(${row1Position}px)`;
+      if (row2Element) row2Element.style.transform = `translateX(${row2Position}px)`;
+      
+      requestAnimationFrame(animate);
+    };
+    
+    const animationId = requestAnimationFrame(animate);
+    
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [testimonials.length]);
 
-      return () => clearInterval(interval);
-    }
-  }, [isAutoScrolling, isPaused, nextTestimonial]);
-
-  return (
-    <section id="testimonials" className="py-24 bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">What Our Clients Say</h2>
-          <div className="w-24 h-1 bg-[#f28749] mx-auto mb-6"></div>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about our cybersecurity services.
-          </p>
+  // Testimonial card component
+  const TestimonialCard = ({ testimonial, index, row }: TestimonialCardProps) => (
+    <div 
+      className="flex-shrink-0 w-[280px] bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 mx-3 border border-gray-100 dark:border-gray-700"
+      style={{ 
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <div className="flex items-start mb-3">
+        <div className="relative mr-3 flex-shrink-0">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#f28749] to-[#e9446a] rounded-full blur-sm opacity-70"></div>
+          <img 
+            src={testimonial.image} 
+            alt={testimonial.name}
+            className="relative w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-800"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=f28749&color=fff`;
+            }}
+          />
         </div>
-        
-        <div className="max-w-5xl mx-auto relative">
-          <div 
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-100 dark:border-gray-700 transition-all duration-500 transform hover:shadow-xl"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              <div className="md:w-1/3 flex flex-col items-center">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#f28749] to-[#e9446a] rounded-full blur-sm opacity-70"></div>
-                  <img 
-                    src={testimonials[currentIndex].image} 
-                    alt={testimonials[currentIndex].name}
-                    className="relative w-28 h-28 rounded-full object-cover border-4 border-white dark:border-gray-800"
-                  />
-                </div>
-                <div className="mt-6 text-center">
-                  <h4 className="font-semibold text-xl dark:text-white">{testimonials[currentIndex].name}</h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-3">{testimonials[currentIndex].company}</p>
-                  <div className="flex items-center justify-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`h-5 w-5 ${i < testimonials[currentIndex].rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300 dark:text-gray-600'}`} 
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              
-              <div className="md:w-2/3">
-                <blockquote className="text-lg md:text-xl italic text-gray-700 dark:text-gray-300 relative">
-                  <span className="text-6xl text-[#f28749]/20 absolute -top-6 -left-4">"</span>
-                  {testimonials[currentIndex].quote}
-                  <span className="text-6xl text-[#f28749]/20 absolute -bottom-10 right-0">"</span>
-                </blockquote>
-              </div>
-            </div>
-            
-            <div className="flex justify-center mt-12 space-x-4">
-              {/* Testimonial indicators */}
-              <div className="flex items-center space-x-3 mr-4">
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      idx === currentIndex 
-                        ? 'bg-[#f28749] w-6' 
-                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-[#f28749]/50'
-                    }`}
-                    aria-label={`Go to testimonial ${idx + 1}`}
-                  />
-                ))}
-              </div>
-              
-              {/* Navigation buttons */}
-              <button 
-                onClick={prevTestimonial}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#f28749]/10 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-              </button>
-              <button 
-                onClick={nextTestimonial}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#f28749]/10 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-              </button>
-              
-              {/* Auto-scroll toggle */}
-              <button
-                onClick={() => setIsAutoScrolling(!isAutoScrolling)}
-                className={`p-2 rounded-full transition-colors ${
-                  isAutoScrolling 
-                    ? 'bg-[#f28749]/20 text-[#f28749]' 
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
-                }`}
-                aria-label={isAutoScrolling ? "Pause auto-scroll" : "Enable auto-scroll"}
-              >
-                {isAutoScrolling ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )}
-              </button>
-            </div>
+        <div>
+          <h4 className="font-semibold text-sm dark:text-white">{testimonial.name}</h4>
+          <p className="text-gray-600 dark:text-gray-400 text-xs">{testimonial.company}</p>
+          <div className="flex items-center mt-1">
+            {[...Array(5)].map((_, i) => (
+              <Star 
+                key={i} 
+                className={`h-3 w-3 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300 dark:text-gray-600'}`} 
+              />
+            ))}
           </div>
         </div>
+      </div>
+      <div className="relative">
+        <Quote className="h-4 w-4 text-[#f28749]/20 absolute top-0 left-0 -translate-x-1 -translate-y-1" />
+        <p className="text-gray-700 dark:text-gray-300 text-xs pl-2 pr-1 line-clamp-3">
+          {testimonial.quote}
+        </p>
+      </div>
+    </div>
+  );
+
+  return (
+    <section id="testimonials" className="py-16 pb-24 bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8">
+        <div data-aos="fade-up" data-aos-duration="1000" className="text-center mb-10 relative">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white relative inline-block">
+            What Our Clients Say
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f28749] to-[#1e3a8a] rounded-full"></div>
+          </h2>
+          <div className="w-24 h-1 bg-[#f28749] mx-auto mb-6 hidden"></div>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
+            Don't just take our word for it. Here's what our clients have to say about Cyberensis's cybersecurity services.
+          </p>
+        </div>
+      </div>
+      
+      <div className="testimonials-container">
+        {/* First row - moves right to left */}
+        <div className="relative mb-16 h-[220px] overflow-visible">
+          <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
+          
+          <div ref={row1Ref} className="flex absolute" style={{ willChange: 'transform' }}>
+            {row1Testimonials.map((testimonial, index) => (
+              <TestimonialCard key={`row1-${index}`} testimonial={testimonial} index={index} row={1} />
+            ))}
+          </div>
+        </div>
+        
+        {/* Second row - moves left to right (opposite direction) */}
+        <div className="relative h-[220px] overflow-visible">
+          <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-100 dark:from-gray-800"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-100 dark:from-gray-800"></div>
+          
+          <div ref={row2Ref} className="flex absolute" style={{ willChange: 'transform' }}>
+            {row2Testimonials.map((testimonial, index) => (
+              <TestimonialCard key={`row2-${index}`} testimonial={testimonial} index={index} row={2} />
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Call to action */}
+      <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" className="text-center mt-16 mb-8">
+        <a 
+          href="/contact" 
+          className="inline-flex items-center px-6 py-3 bg-[#f28749] text-white font-medium rounded-md hover:bg-[#e07339] transition-colors"
+        >
+          Join Our Satisfied Clients
+        </a>
       </div>
     </section>
   );
