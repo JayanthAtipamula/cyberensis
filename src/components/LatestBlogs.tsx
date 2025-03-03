@@ -97,14 +97,14 @@ const LatestBlogs = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {latestPosts.map((post, index) => (
-            <div key={post.id} className="rounded-lg overflow-hidden shadow-md flex flex-col h-full transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+            <div key={post.id} className="rounded-lg overflow-hidden shadow-md flex flex-col h-full transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg group">
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden rounded-t-lg">
                 {post.featuredImage ? (
                   <img 
                     src={post.featuredImage} 
                     alt={post.title} 
-                    className="w-full h-full object-cover rounded-t-lg"
+                    className="w-full h-full object-cover rounded-t-lg transform transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-[#1e3a8a] rounded-t-lg">
@@ -114,30 +114,30 @@ const LatestBlogs = () => {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 bg-[#1e3a8a] text-white flex flex-col flex-grow rounded-b-lg">
+              <div className="p-6 bg-gradient-to-br from-[#1e3a8a] to-[#2d4eaa] text-white flex flex-col flex-grow rounded-b-lg transition-all duration-300 group-hover:from-[#ffb800] group-hover:to-[#ff7a45] group-hover:text-black">
                 <div className="flex items-center mb-3">
-                  <span className="bg-blue-500/20 text-blue-300 text-xs font-medium px-3 py-1 rounded-full flex items-center">
+                  <span className="bg-blue-500/20 text-blue-300 text-xs font-medium px-3 py-1 rounded-full flex items-center group-hover:text-black group-hover:bg-black/20">
                     <Tag className="w-3 h-3 mr-1" />
                     General
                   </span>
                 </div>
                 
                 <h3 className="text-xl font-bold mb-3 line-clamp-2">
-                  <Link to={`/blog/${post.slug}`} className="hover:text-[#f28749] transition-colors">
+                  <Link to={`/blog/${post.slug}`} className="text-white group-hover:text-black transition-colors">
                     {post.title}
                   </Link>
                 </h3>
-                <p className="text-gray-200 mb-4 line-clamp-3 flex-grow">
+                <p className="text-white mb-4 line-clamp-3 flex-grow group-hover:text-black">
                   {truncateText(extractTextFromHtml(post.content), 100)}
                 </p>
                 <div className="mt-auto flex justify-between items-center">
-                  <div className="text-xs text-gray-300">
+                  <div className="text-white text-xs group-hover:text-black">
                     <Calendar className="h-3 w-3 inline mr-1" />
                     {formatDate(post.createdAt)}
                   </div>
                   <Link 
                     to={`/blog/${post.slug}`} 
-                    className="inline-flex items-center text-white hover:text-[#f28749]"
+                    className="inline-flex items-center text-white group-hover:text-black"
                     aria-label={`Read more about ${post.title}`}
                   >
                     <ArrowRight className="h-5 w-5" />

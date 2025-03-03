@@ -40,7 +40,7 @@ const HeroSection = () => {
         <div className="flex flex-col md:flex-row items-center justify-center h-full">
           <div className="md:w-3/4 lg:w-2/3 text-center md:text-left z-10">
             <BlurFade delay={0.25} inView>
-              <div className="h-[220px] sm:h-[200px] md:h-[220px]">
+              <div className="min-h-[180px] sm:min-h-[200px] md:min-h-[220px] mb-6">
                 <AnimatePresence mode="wait">
                   <motion.h1
                     key={textIndex}
@@ -48,7 +48,7 @@ const HeroSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5 }}
-                    className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 whitespace-pre-line"
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-pre-line"
                   >
                     {headlines[textIndex]}
                   </motion.h1>
@@ -57,7 +57,7 @@ const HeroSection = () => {
             </BlurFade>
             
             <BlurFade delay={0.5} inView>
-              <p className="text-lg sm:text-xl mb-8 text-gray-100 max-w-2xl mx-auto md:mx-0">
+              <p className="text-lg sm:text-xl mb-8 text-gray-100 max-w-2xl mx-auto md:mx-0 leading-relaxed">
                 Protecting Businesses with Cutting-Edge Security Solutions
               </p>
             </BlurFade>

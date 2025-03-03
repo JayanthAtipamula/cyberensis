@@ -207,10 +207,13 @@ export const NavBar = memo(({ items, className }: NavBarProps) => {
                                         setActiveTab(child.name)
                                         setOpenDropdown(null)
                                       }}
-                                      className="flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-[#f28749] dark:hover:text-[#f28749]"
+                                      className="group flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:text-[#f28749] dark:hover:text-[#f28749] relative"
                                     >
                                       <ChildIcon size={18} className="mr-2" />
-                                      <span>{child.name}</span>
+                                      <span className="relative">
+                                        {child.name}
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#f28749] to-[#f28749]/80 group-hover:w-full transition-all duration-300"></span>
+                                      </span>
                                     </a>
                                   )
                                 })}
